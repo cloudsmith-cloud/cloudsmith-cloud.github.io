@@ -25,6 +25,29 @@ cloudsmith-cloud.github.io/
 - **ADO reference:** `AB#<id>` in commit messages when applicable
 - **Never:** commit secrets, tokens, connection strings, or API keys — this will be a public repo
 
+## Standards
+
+This repo follows all HCS platform standards defined in the Platform Engineering repo:
+
+| Standard | Reference |
+|---|---|
+| Governance | docs/standards/governance.md in Platform Engineering |
+| Documentation | docs/standards/documentation.md in Platform Engineering |
+| Claude Code | docs/standards/claude-code.md in Platform Engineering |
+
+Key rules: No secrets ever — this will be a public repo. Commit format: `type(scope): short description`. No Word documents.
+
+## Key facts
+
+| Fact | Value |
+|---|---|
+| GitHub org | cloudsmith-cloud |
+| ADO org | https://dev.azure.com/hybridcloudsolutions |
+| ADO project | CloudSmith |
+| Azure login | kris@hybridsolutions.cloud |
+| Key Vault | kv-hcs-vault-01 (platform secrets only; no Azure infra yet — pending ADR-021) |
+| Auth | GitHub App (hcs-platform-app, install ID 132507454) |
+
 ## Subagents
 
 | Agent | Model | Purpose |
@@ -49,7 +72,7 @@ cloudsmith-cloud.github.io/
 - Max 2 revision rounds before human escalation
 - No silent new dependencies — flag in open_questions
 
-## What Claude may do autonomously
+## Claude Code actions
 
 - Read, search, and grep any file in this repo
 - Write and edit files within this repo
