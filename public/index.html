@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CloudSmith — Forge your private cloud.</title>
+  <meta name="description" content="A modern, open-source cloud platform management solution for Azure Local and Hyper-V environments. Built for engineers, open source by design." />
+  <meta property="og:title" content="CloudSmith — Forge your private cloud." />
+  <meta property="og:description" content="Full-lifecycle platform management for Azure Local and Hyper-V. Plan, deploy, operate, and troubleshoot from one place." />
+  <meta property="og:url" content="https://cloudsmith.cloud" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.12);
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: rgba(255,255,255,0.07);
+      --text: #e5e5e5;
+      --muted: #a3a3a3;
+      --dim: #525252;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--orange); }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 7rem 2rem 5rem;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% -5%, var(--orange-dim) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 9vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #fff 20%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1.4rem;
+      color: var(--orange);
+      font-style: italic;
+      font-weight: 500;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-desc strong { color: var(--text); }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .btn-primary { background: var(--orange); color: #fff; }
+
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ── Features ── */
+    .features {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(249,115,22,0.35);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.9rem;
+      line-height: 1;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Philosophy ── */
+    .philosophy {
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .philosophy-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .philosophy h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .pillar {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .pillar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .pillar span {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pillar strong { color: var(--text); display: block; }
+
+    /* ── Attribution ── */
+    .attribution {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .attribution p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .attribution a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .attribution a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--dim); text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
+    <a class="nav-link" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub →</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">Open Source — Coming Soon</div>
+    <h1>CloudSmith</h1>
+    <p class="tagline">Forge your private cloud.</p>
+    <p class="hero-desc">
+      A modern, open-source cloud platform management solution purpose-built for
+      organizations deploying and operating <strong>Microsoft Azure Local</strong> and
+      <strong>Hyper-V cluster</strong> environments. Not a bloated CMP.
+      Not a narrow point tool. A full-lifecycle platform.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">Follow on GitHub</a>
+      <a class="btn btn-ghost" href="https://cloudsmith.app">Try CloudSmith →</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="section-label">What CloudSmith does</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">⚒️</div>
+        <h3>Full Lifecycle Platform</h3>
+        <p>Plan, deploy, operate, update, and troubleshoot Azure Local and Hyper-V environments from one place — not a collection of scripts and spreadsheets.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>AI-Assisted Operations</h3>
+        <p>Intelligent log analysis, pattern matching against known issues, and guided troubleshooting. AI enhances your team — your engineers make the calls.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏢</div>
+        <h3>MSP-Ready Multi-Tenancy</h3>
+        <p>Manage multiple customers and sites from a single control plane. Built for managed service providers from day one, not bolted on after the fact.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔌</div>
+        <h3>Agentless by Default</h3>
+        <p>PowerShell remoting, WinRM, and REST APIs. No agent sprawl. Secure remote execution with no inbound firewall rules required on your clusters.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💾</div>
+        <h3>Hardware Aware</h3>
+        <p>Dell Redfish API integration for firmware inventory, health monitoring, and out-of-band operations. Lenovo XCC and HPE iLO support planned.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Open Source</h3>
+        <p>Designed for the community from day one. Self-host it, extend it, contribute to it. No proprietary lock-in, no vendor licensing, no surprises.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <div class="philosophy-inner">
+      <div class="section-label">Built differently</div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <span><strong>Modularity first</strong>Add or remove capabilities without breaking the platform</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <span><strong>Agentless by default</strong>Use what's already there — remoting, WinRM, REST</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <span><strong>Open standards</strong>No proprietary lock-in for the platform itself</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <span><strong>AI-assisted, not AI-dependent</strong>AI enhances, humans decide</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <span><strong>Security is the foundation</strong>Not a feature added after the fact</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <span><strong>Open source from day one</strong>Designed for the community, not extracted from a product</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attribution -->
+  <section class="attribution">
+    <p>
+      CloudSmith is being built by
+      <a href="https://hybridsolutions.cloud" target="_blank" rel="noopener noreferrer">Hybrid Cloud Solutions</a>
+      and will be released as open source.
+    </p>
+    <p>
+      Follow the build at
+      <a href="https://thisismydemo.cloud" target="_blank" rel="noopener noreferrer">thisismydemo.cloud</a>.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>CloudSmith — open source, coming soon</span>
+    <span>
+      <a href="https://hybridsolutions.cloud" target="_blank" rel="noopener noreferrer">Hybrid Cloud Solutions</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://cloudsmith.app">cloudsmith.app</a>
+    </span>
+  </footer>
+
+</body>
+</html>
