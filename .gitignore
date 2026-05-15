@@ -150,3 +150,6 @@ logs/
 
 # Claude Code logs
 .claude/logs/*.jsonl
+
+# Docusaurus
+.docusaurus/

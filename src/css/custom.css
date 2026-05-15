@@ -1,0 +1,36 @@
+/**
+ * CloudSmith — custom Docusaurus theme
+ * Forge palette: ember orange primary, dark surfaces, steel accents
+ */
+
+:root {
+  --ifm-color-primary: #f97316;
+  --ifm-color-primary-dark: #ea6a0a;
+  --ifm-color-primary-darker: #dc600a;
+  --ifm-color-primary-darkest: #b54e07;
+  --ifm-color-primary-light: #fb9347;
+  --ifm-color-primary-lighter: #fb9e58;
+  --ifm-color-primary-lightest: #fcc49a;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #f97316;
+  --ifm-color-primary-dark: #ea6a0a;
+  --ifm-color-primary-darker: #dc600a;
+  --ifm-color-primary-darkest: #b54e07;
+  --ifm-color-primary-light: #fb9347;
+  --ifm-color-primary-lighter: #fb9e58;
+  --ifm-color-primary-lightest: #fcc49a;
+  --ifm-background-color: #0a0a0a;
+  --ifm-background-surface-color: #111111;
+  --ifm-navbar-background-color: #0a0a0a;
+  --ifm-footer-background-color: #0d0d0d;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Remove default page padding from the main wrapper on the landing page */
+.main-wrapper {
+  padding: 0;
+}
