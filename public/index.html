@@ -67,6 +67,30 @@
 
     .nav-link:hover { color: var(--text); }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      padding: 0.45rem 1.1rem;
+      border-radius: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; color: #fff; }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 0.75rem; }
+      .nav-links .nav-link:nth-child(-n+2) { display: none; }
+    }
+
     /* ── Hero ── */
     .hero {
       padding: 7rem 2rem 5rem;
@@ -329,6 +353,81 @@
 
     .pillar strong { color: var(--text); display: block; }
 
+    /* ── About ── */
+    .about {
+      padding: 5rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .about h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .about-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 2.5rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .about-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 1.25rem;
+    }
+
+    .about-item h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .about-item p, .about-item a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-decoration: none;
+    }
+
+    .about-item a:hover { color: var(--orange); }
+
+    .about-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--orange);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(249,115,22,0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      transition: background 0.15s;
+    }
+
+    .about-link:hover { background: rgba(249,115,22,0.08); }
+
     /* ── Attribution ── */
     .attribution {
       padding: 4rem 2rem;
@@ -371,7 +470,13 @@
   <!-- Nav -->
   <nav>
     <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
-    <a class="nav-link" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub →</a>
+    <div class="nav-links">
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
+      <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
+      <a class="nav-link" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="nav-cta" href="https://cloudsmith.app">Get Started →</a>
+    </div>
   </nav>
 
   <!-- Hero -->
@@ -520,6 +625,47 @@
     </div>
   </section>
 
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="section-label">The project</div>
+    <h2>Open source, built in the open.</h2>
+    <p class="about-lead">
+      CloudSmith is being built by <a href="https://hybridsolutions.cloud" style="color:var(--orange);text-decoration:none;" target="_blank">Hybrid Cloud Solutions</a> and will be released under the Apache 2.0 license. Every architectural decision, research document, and design artifact is tracked publicly. The code repos will be open from day one.
+    </p>
+    <div class="about-grid">
+      <div class="about-item">
+        <h3>License</h3>
+        <p>Apache 2.0 — use it, extend it, ship it. No contributor license agreement required beyond a DCO sign-off.</p>
+      </div>
+      <div class="about-item">
+        <h3>Roadmap</h3>
+        <p>Phase I–II: architecture and planning. Phase III: design and scaffolding. Phase IV: first code. Follow the build on GitHub.</p>
+      </div>
+      <div class="about-item">
+        <h3>Contributing</h3>
+        <p>Not ready for code contributions yet — we're still in the architecture phase. Watch the repo and come back for Phase IV.</p>
+      </div>
+      <div class="about-item">
+        <h3>Community</h3>
+        <p>GitHub Discussions is the community hub. Questions, ideas, and feedback welcome at any phase.</p>
+      </div>
+      <div class="about-item">
+        <h3>Built by</h3>
+        <p><a href="https://hybridsolutions.cloud" target="_blank">Hybrid Cloud Solutions</a> — Azure Local and Hyper-V specialists based in the US.</p>
+      </div>
+      <div class="about-item">
+        <h3>Follow the build</h3>
+        <p><a href="https://thisismydemo.cloud" target="_blank">thisismydemo.cloud</a> — architecture walkthroughs and build updates as we go.</p>
+      </div>
+    </div>
+    <div class="about-links">
+      <a class="about-link" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub Org →</a>
+      <a class="about-link" href="https://support.cloudsmith.cloud">Community Support →</a>
+      <a class="about-link" href="https://docs.cloudsmith.cloud">Documentation →</a>
+      <a class="about-link" href="https://blog.cloudsmith.cloud">Blog →</a>
+    </div>
+  </section>
+
   <!-- Attribution -->
   <section class="attribution">
     <p>
@@ -535,9 +681,17 @@
 
   <!-- Footer -->
   <footer>
-    <span>CloudSmith — open source, coming soon</span>
+    <span>CloudSmith — open source, Apache 2.0</span>
     <span>
-      <a href="https://hybridsolutions.cloud" target="_blank" rel="noopener noreferrer">Hybrid Cloud Solutions</a>
+      <a href="#about">About</a>
+      &nbsp;·&nbsp;
+      <a href="https://docs.cloudsmith.cloud">Docs</a>
+      &nbsp;·&nbsp;
+      <a href="https://support.cloudsmith.cloud">Support</a>
+      &nbsp;·&nbsp;
+      <a href="https://blog.cloudsmith.cloud">Blog</a>
+      &nbsp;·&nbsp;
+      <a href="https://status.cloudsmith.cloud">Status</a>
       &nbsp;·&nbsp;
       <a href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub</a>
       &nbsp;·&nbsp;
