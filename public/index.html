@@ -149,6 +149,83 @@
 
     .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
 
+    /* ── Composable ── */
+    .composable {
+      padding: 4rem 2rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .composable-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .composable-inner .section-label { margin-bottom: 1rem; }
+
+    .composable-headline {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .composable-headline span { color: var(--orange); }
+
+    .composable-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .use-case {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .use-case:hover { border-color: rgba(249,115,22,0.35); }
+
+    .uc-scenario {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.4rem;
+    }
+
+    .uc-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .uc-detail {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
     /* ── Features ── */
     .features {
       padding: 5rem 2rem;
@@ -314,6 +391,40 @@
     </div>
   </section>
 
+  <!-- Composable -->
+  <section class="composable">
+    <div class="composable-inner">
+      <div class="section-label">Your workflow. Your platform.</div>
+      <h2 class="composable-headline">Use only what you need.<br><span>Nothing else.</span></h2>
+      <p class="composable-sub">
+        CloudSmith isn't something you adopt all at once. Enable the modules that match your workflow today
+        and grow into the rest when you're ready — or never. No bloat, no forced features, no compromises.
+      </p>
+      <div class="use-cases">
+        <div class="use-case">
+          <div class="uc-scenario">Scenario</div>
+          <span class="uc-label">Just deployment validation</span>
+          <span class="uc-detail">Enable Planning + Deploy. Verify your Azure Local deployments are correct and prereqs are in place. That's it.</span>
+        </div>
+        <div class="use-case">
+          <div class="uc-scenario">Scenario</div>
+          <span class="uc-label">Troubleshooting platform only</span>
+          <span class="uc-detail">Enable Troubleshooting. Get AI-assisted diagnostics and guided remediation — no deployment features in your way.</span>
+        </div>
+        <div class="use-case">
+          <div class="uc-scenario">Scenario</div>
+          <span class="uc-label">Hardware health across your fleet</span>
+          <span class="uc-detail">Enable Hardware. Firmware inventory, OOB health, and lifecycle management — nothing else running.</span>
+        </div>
+        <div class="use-case">
+          <div class="uc-scenario">Scenario</div>
+          <span class="uc-label">The full operations platform</span>
+          <span class="uc-detail">Enable everything. Start small, grow into it — or go full stack from day one. Your call.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features -->
   <section class="features">
     <div class="section-label">What CloudSmith does</div>
@@ -358,7 +469,7 @@
       <div class="card">
         <div class="card-icon">🧩</div>
         <h3>Modular by Design</h3>
-        <p>Every capability is a module — install, enable, upgrade, or disable independently without taking the platform down. Community and OEM partners can ship their own modules. The core platform stays lean; you add what your environment needs.</p>
+        <p>Use only what your environment needs — nothing more. Enable the Planning module, the Hardware module, or Troubleshooting alone. Every capability installs, upgrades, and removes independently without taking the platform down. Community and OEM partners can ship their own modules.</p>
       </div>
 
       <div class="card">
