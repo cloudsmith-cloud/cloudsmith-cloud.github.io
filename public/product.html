@@ -778,6 +778,54 @@
       .phases-table { font-size: 0.8rem; }
       .phases-table th, .phases-table td { padding: 0.65rem 0.75rem; }
     }
+
+    /* ── Download button ── */
+    .download-bar {
+      text-align: center;
+      padding: 1rem 2rem 0;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid rgba(249,115,22,0.4);
+      color: var(--orange);
+      padding: 0.5rem 1.25rem;
+      border-radius: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .btn-download:hover { background: var(--orange-dim); }
+
+    /* ── Print / PDF ── */
+    @media print {
+      :root {
+        --bg: #fff;
+        --surface: #f8f8f8;
+        --text: #111;
+        --muted: #444;
+        --dim: #666;
+        --border: #ddd;
+        --orange: #c05a00;
+        --orange-dim: rgba(192,90,0,0.08);
+      }
+      body { background: #fff; color: #111; font-size: 11pt; }
+      nav, .download-bar, footer, .nav-dropdown, script { display: none !important; }
+      .hero { padding: 2rem 1rem 1.5rem; background: none; border: none; }
+      h1 { font-size: 28pt; -webkit-text-fill-color: #111; background: none; color: #111; }
+      .tagline { color: var(--orange); }
+      .badge { border-color: var(--orange); color: var(--orange); }
+      .hero-stat .num { color: var(--orange); }
+      .card, .pillar-card, .module-card, .model-card, .persona-card { break-inside: avoid; border: 1px solid #ddd; background: #f8f8f8; }
+      .section-label { color: var(--orange); }
+      a { color: inherit; text-decoration: none; }
+      h2 { page-break-after: avoid; }
+      .phases-table { font-size: 9pt; }
+    }
   </style>
 </head>
 <body>
@@ -803,6 +851,11 @@
       <a class="nav-cta" href="/preview.html">Join Preview &#8594;</a>
     </div>
   </nav>
+
+  <!-- Download bar -->
+  <div class="download-bar">
+    <button class="btn-download" onclick="window.print()">&#8595; Download as PDF</button>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
