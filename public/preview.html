@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Preview — CloudSmith</title>
+  <meta name="description" content="CloudSmith private preview — be first to test and shape the platform before it opens to the world." />
+  <meta property="og:title" content="Private Preview — CloudSmith" />
+  <meta property="og:description" content="CloudSmith is in active development. When Phase IV ships, a small group of real operators will get early access to test and shape the platform." />
+  <meta property="og:url" content="https://cloudsmith.cloud/preview.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.12);
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: rgba(255,255,255,0.07);
+      --text: #e5e5e5;
+      --muted: #a3a3a3;
+      --dim: #525252;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--orange); }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      padding: 0.45rem 1.1rem;
+      border-radius: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; color: #fff; }
+
+    /* ── Nav dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-dropdown-btn:hover { color: var(--text); }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.4rem;
+      min-width: 180px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .nav-dropdown-menu.open { display: block; }
+    .nav-dropdown-item {
+      display: block;
+      padding: 0.5rem 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 0.3rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-item:hover { background: var(--orange-dim); color: var(--text); }
+    .nav-dropdown-item.active { color: var(--orange); }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 0.75rem; }
+      .nav-links .nav-link { display: none; }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 2rem 4.5rem;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% -5%, var(--orange-dim) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #fff 20%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subhead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
+    }
+
+    .status-notice {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid rgba(249,115,22,0.3);
+      border-left: 3px solid var(--orange);
+      border-radius: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: 4.5rem 2rem;
+    }
+
+    .section-alt {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-top: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .section-header h2 span { color: var(--orange); }
+
+    .section-header p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0.75rem auto 0;
+      line-height: 1.7;
+    }
+
+    /* ── Benefit cards 2x2 ── */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 780px) {
+      .benefit-grid { grid-template-columns: 1fr; }
+    }
+
+    .benefit-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .benefit-card:hover {
+      border-color: rgba(249,115,22,0.35);
+      transform: translateY(-2px);
+    }
+
+    .benefit-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .benefit-num {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── Who we want ── */
+    .profiles-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .profiles-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 0.65rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.4rem;
+    }
+
+    .profiles-list li::before {
+      content: '—';
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .cohort-note {
+      font-size: 0.875rem;
+      color: var(--dim);
+      line-height: 1.65;
+      text-align: center;
+      margin-top: 1.25rem;
+    }
+
+    /* ── Ask bullets ── */
+    .ask-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .ask-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .ask-list li::before {
+      content: '—';
+      color: var(--dim);
+      flex-shrink: 0;
+    }
+
+    .ask-list li strong { color: var(--text); }
+
+    /* ── CTA row ── */
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--dim); text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn">About &#9662;</button>
+        <div class="nav-dropdown-menu">
+          <a href="/#about" class="nav-dropdown-item">About CloudSmith</a>
+          <a href="/preview.html" class="nav-dropdown-item active">Private Preview</a>
+          <a href="/product.html" class="nav-dropdown-item">Capabilities</a>
+          <a href="/roadmap.html" class="nav-dropdown-item">Roadmap</a>
+          <a href="/changelog.html" class="nav-dropdown-item">Changelog</a>
+          <a href="/contributing.html" class="nav-dropdown-item">Contributing</a>
+          <a href="/community.html" class="nav-dropdown-item">Community</a>
+        </div>
+      </div>
+      <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
+      <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
+      <a class="nav-cta" href="/preview.html">Join Preview &#8594;</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">Private Preview</div>
+    <h1>Be first to forge with CloudSmith.</h1>
+    <p class="hero-subhead">
+      CloudSmith is in active development. When Phase IV ships, a small group of real operators will get early access — to test, break, and shape the platform before it opens to the world.
+    </p>
+    <div class="status-notice">
+      <strong style="color: var(--orange);">Sign-up applications are not yet open.</strong> We're still in the architecture and design phase. Applications will open as we approach Phase IV — the first real code release. Watch the GitHub org and follow the blog to be notified.
+    </div>
+  </section>
+
+  <!-- What preview participants get -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Preview benefits</div>
+        <h2>What preview participants get</h2>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-num">01</div>
+          <h3>Early Access</h3>
+          <p>MVP access before public launch, plus each module as it ships — Phase V, VI, and beyond. You're in from the first release, not after the crowd.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-num">02</div>
+          <h3>Direct Line to the Team</h3>
+          <p>Bug reports and feedback go straight to the engineers building it. No support ticket queue. No triage delay. We want to hear what's broken.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-num">03</div>
+          <h3>Roadmap Influence</h3>
+          <p>Your feedback shapes what gets built next. Preview participants' environments drive module priority — if something is missing in your stack, say so.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-num">04</div>
+          <h3>Recognition</h3>
+          <p>Named in release notes and contributor docs when the project goes public. Your environment helped build this — that's worth acknowledging.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we're looking for -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Target participants</div>
+        <h2>We want <span>real operators</span> — not just enthusiasts.</h2>
+        <p>The preview is deliberately diverse to surface real-world edge cases across environments.</p>
+      </div>
+      <ul class="profiles-list">
+        <li>Azure Local operator (small shop, 1–20 nodes)</li>
+        <li>Azure Local operator (mid-scale, 20–200 nodes)</li>
+        <li>Standalone Hyper-V shop (no Azure dependency)</li>
+        <li>MSP managing multiple customer environments</li>
+        <li>Solutions architect who designs and deploys Azure Local</li>
+        <li>Dell iDRAC environment (primary hardware target)</li>
+        <li>Lenovo, HPE, or mixed-vendor environments</li>
+        <li>Air-gapped or disconnected deployments</li>
+      </ul>
+      <p class="cohort-note">We're aiming for 10–25 participants in the first cohort. More will be added as modules ship in Phase V and VI.</p>
+    </div>
+  </section>
+
+  <!-- What we ask -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Your commitment</div>
+        <h2>What we ask of you</h2>
+      </div>
+      <ul class="ask-list">
+        <li><strong>Actually use it</strong> — in a lab or non-production environment at first. We're not looking for paper evaluations.</li>
+        <li><strong>Report bugs and friction points</strong> via GitHub Issues. If something doesn't work or is confusing, file an issue — that's exactly what we need.</li>
+        <li><strong>Give design feedback</strong> — if a workflow feels wrong, say so. The goal is a platform that real operators actually want to use.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Stay in the loop -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Stay in the loop</div>
+        <h2>Not open yet — but you can get notified.</h2>
+        <p>Applications will open as Phase IV approaches. Watch the GitHub org and follow the blog — those are the first places we'll announce when the preview opens.</p>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-ghost" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">Watch on GitHub &#8594;</a>
+        <a class="btn btn-ghost" href="/roadmap.html">View Roadmap &#8594;</a>
+        <a class="btn btn-ghost" href="https://blog.cloudsmith.cloud" target="_blank" rel="noopener noreferrer">Follow the Build &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>CloudSmith — open source, Apache 2.0</span>
+    <span>
+      <a href="/#about">About</a> &nbsp;·&nbsp;
+      <a href="/preview.html">Private Preview</a> &nbsp;·&nbsp;
+      <a href="/product.html">Capabilities</a> &nbsp;·&nbsp;
+      <a href="/roadmap.html">Roadmap</a> &nbsp;·&nbsp;
+      <a href="/changelog.html">Changelog</a> &nbsp;·&nbsp;
+      <a href="https://docs.cloudsmith.cloud">Docs</a> &nbsp;·&nbsp;
+      <a href="https://support.cloudsmith.cloud">Support</a> &nbsp;·&nbsp;
+      <a href="https://blog.cloudsmith.cloud">Blog</a> &nbsp;·&nbsp;
+      <a href="https://status.cloudsmith.cloud">Status</a> &nbsp;·&nbsp;
+      <a href="https://cloudsmith.app">cloudsmith.app</a>
+    </span>
+  </footer>
+
+<script>
+  (function() {
+    var btn = document.querySelector('.nav-dropdown-btn');
+    var menu = document.querySelector('.nav-dropdown-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+  })();
+</script>
+</body>
+</html>

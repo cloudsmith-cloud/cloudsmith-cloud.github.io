@@ -469,6 +469,89 @@
 
     .about-link:hover { background: rgba(249,115,22,0.08); }
 
+    /* ── Why ── */
+    .why {
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .why-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .why-statement { margin: 0; padding: 0; border: none; }
+    .why-statement p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 1.35rem;
+    }
+    .why-statement p:first-child { font-size: 1.15rem; color: var(--text); }
+    .why-statement cite {
+      display: block;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--orange);
+      font-style: normal;
+      font-weight: 600;
+    }
+    .hero-sub-link {
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+    }
+    .hero-sub-link a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .hero-sub-link a:hover { color: var(--orange); border-color: rgba(249,115,22,0.4); }
+
+    /* ── Preview Banner ── */
+    .preview-banner {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid rgba(249,115,22,0.2);
+      padding: 2rem;
+      text-align: center;
+    }
+    .preview-banner-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .preview-badge {
+      display: inline-block;
+      padding: 0.25rem 0.8rem;
+      border-radius: 9999px;
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .preview-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .preview-link {
+      color: var(--orange);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(249,115,22,0.3);
+      padding: 0.45rem 1rem;
+      border-radius: 0.4rem;
+      transition: background 0.15s;
+    }
+    .preview-link:hover { background: var(--orange-dim); }
+
     /* ── Attribution ── */
     .attribution {
       padding: 4rem 2rem;
@@ -516,6 +599,7 @@
         <button class="nav-link nav-dropdown-btn">About ▾</button>
         <div class="nav-dropdown-menu">
           <a href="/#about" class="nav-dropdown-item">About CloudSmith</a>
+          <a href="/preview.html" class="nav-dropdown-item">Private Preview</a>
           <a href="/product.html" class="nav-dropdown-item">Capabilities</a>
           <a href="/roadmap.html" class="nav-dropdown-item">Roadmap</a>
           <a href="/changelog.html" class="nav-dropdown-item">Changelog</a>
@@ -525,7 +609,7 @@
       </div>
       <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
       <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
-      <a class="nav-cta" href="https://cloudsmith.app">Get Started →</a>
+      <a class="nav-cta" href="/preview.html">Join Preview →</a>
     </div>
   </nav>
 
@@ -541,9 +625,10 @@
       Not a narrow point tool. A full-lifecycle platform.
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">Follow on GitHub</a>
-      <a class="btn btn-ghost" href="https://cloudsmith.app">Try CloudSmith →</a>
+      <a class="btn btn-primary" href="/preview.html">Join Private Preview →</a>
+      <a class="btn btn-ghost" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">Follow on GitHub</a>
     </div>
+    <p class="hero-sub-link"><a href="/product.html">See the full capabilities overview →</a></p>
   </section>
 
   <!-- Composable -->
@@ -675,6 +760,17 @@
     </div>
   </section>
 
+  <!-- Preview -->
+  <section class="preview-banner">
+    <div class="preview-banner-inner">
+      <div class="preview-badge">Private Preview — Coming Soon</div>
+      <p class="preview-text">
+        CloudSmith is in active development. When Phase IV ships, a small group of real operators will get early access to test and shape the platform before it opens to the world.
+      </p>
+      <a class="preview-link" href="/preview.html">Learn more and get notified →</a>
+    </div>
+  </section>
+
   <!-- About -->
   <section class="about" id="about">
     <div class="section-label">The project</div>
@@ -716,17 +812,18 @@
     </div>
   </section>
 
-  <!-- Attribution -->
-  <section class="attribution">
-    <p>
-      CloudSmith is being built by
-      <a href="https://hybridsolutions.cloud" target="_blank" rel="noopener noreferrer">Hybrid Cloud Solutions</a>
-      and will be released as open source.
-    </p>
-    <p>
-      Follow the build at
-      <a href="https://thisismydemo.cloud" target="_blank" rel="noopener noreferrer">thisismydemo.cloud</a>.
-    </p>
+  <!-- Why This Exists -->
+  <section class="why">
+    <div class="why-inner">
+      <div class="section-label">Why this project exists</div>
+      <blockquote class="why-statement">
+        <p>Hyper-V is an exceptional hypervisor. After years running it in production — from small businesses to large enterprises — I have never found a reason to question the technology itself. The problem has always been the management tooling around it.</p>
+        <p>Microsoft gave us System Center Virtual Machine Manager, and it was genuinely great. But it required a separate license, a dedicated server, and its own maintenance burden just to keep the management platform running. Open source alternatives are limited and fragmented. Third-party tools range from expensive to eye-wateringly expensive — for capabilities that should come standard with the platform. Nobody should have to pay thousands of dollars a year to properly manage a hypervisor that Microsoft includes with Windows Server.</p>
+        <p>My goal is to build the tool that should already exist: a full-lifecycle management platform for Hyper-V and Azure Local — open source, free — that takes any organization from initial design and capacity planning all the way through deployment, daily operations, updates, hardware management, and eventual retirement. Small business with three servers. Large enterprise with three hundred nodes. Same quality of tooling, no licensing fees, no vendor lock-in.</p>
+        <p>That is the gap. CloudSmith is my attempt to close it. If you share that goal and want to help make it happen, I can always use the help.</p>
+        <cite>— Kris Turner, Hybrid Cloud Solutions</cite>
+      </blockquote>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -734,6 +831,8 @@
     <span>CloudSmith — open source, Apache 2.0</span>
     <span>
       <a href="/#about">About</a>
+      &nbsp;·&nbsp;
+      <a href="/preview.html">Private Preview</a>
       &nbsp;·&nbsp;
       <a href="/product.html">Capabilities</a>
       &nbsp;·&nbsp;
