@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About CloudSmith — Open source, built in the open.</title>
+  <meta name="description" content="CloudSmith is being built by Hybrid Cloud Solutions and will be released under the Apache 2.0 license. Every architectural decision, research document, and design artifact is tracked." />
+  <meta property="og:title" content="About CloudSmith — Open source, built in the open." />
+  <meta property="og:description" content="CloudSmith is being built by Hybrid Cloud Solutions and will be released under the Apache 2.0 license. Every architectural decision and design artifact is tracked. The code repos will be open from day one." />
+  <meta property="og:url" content="https://cloudsmith.cloud/about.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.12);
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: rgba(255,255,255,0.07);
+      --text: #e5e5e5;
+      --muted: #a3a3a3;
+      --dim: #525252;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--orange); }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      padding: 0.45rem 1.1rem;
+      border-radius: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; color: #fff; }
+
+    /* ── Nav dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-dropdown-btn:hover { color: var(--text); }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.4rem;
+      min-width: 180px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .nav-dropdown-menu.open { display: block; }
+    .nav-dropdown-item {
+      display: block;
+      padding: 0.5rem 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 0.3rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-item:hover { background: var(--orange-dim); color: var(--text); }
+    .nav-dropdown-item.active { color: var(--orange); }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 0.75rem; }
+      .nav-links .nav-link { display: none; }
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 2rem 4.5rem;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% -5%, var(--orange-dim) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero .section-label { text-align: center; }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #fff 20%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── Why section ── */
+    .why {
+      padding: 5rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .why-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .why-inner .section-label { text-align: left; margin-bottom: 2rem; }
+
+    .why-statement { margin: 0; padding: 0; border: none; }
+
+    .why-statement p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 1.35rem;
+    }
+
+    .why-statement p:first-child { font-size: 1.15rem; color: var(--text); }
+
+    .why-statement cite {
+      display: block;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--orange);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* ── Facts grid ── */
+    .facts {
+      padding: 5rem 2rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .facts-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .facts-inner .section-label { text-align: center; margin-bottom: 2.5rem; }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .fact-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 1.4rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .fact-card:hover { border-color: rgba(249,115,22,0.35); }
+
+    .fact-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-card p {
+      font-size: 0.855rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .fact-card a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    .fact-card a:hover { text-decoration: underline; }
+
+    /* ── About links ── */
+    .about-links-section {
+      padding: 4.5rem 2rem;
+    }
+
+    .about-links-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .about-links-inner .section-label { text-align: center; margin-bottom: 2rem; }
+
+    .about-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--orange);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(249,115,22,0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      transition: background 0.15s;
+    }
+
+    .about-link:hover { background: rgba(249,115,22,0.08); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--dim); text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn">About ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="/about.html" class="nav-dropdown-item active">About CloudSmith</a>
+          <a href="/preview.html" class="nav-dropdown-item">Private Preview</a>
+          <a href="/product.html" class="nav-dropdown-item">Capabilities</a>
+          <a href="/roadmap.html" class="nav-dropdown-item">Roadmap</a>
+          <a href="/changelog.html" class="nav-dropdown-item">Changelog</a>
+          <a href="/contributing.html" class="nav-dropdown-item">Contributing</a>
+          <a href="/community.html" class="nav-dropdown-item">Community</a>
+        </div>
+      </div>
+      <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
+      <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
+      <a class="nav-cta" href="/preview.html">Join Preview →</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="section-label">The project</div>
+    <h1>Open source, built in the open.</h1>
+    <p class="hero-lead">
+      CloudSmith is being built by <a href="https://hybridsolutions.cloud" style="color:var(--orange);text-decoration:none;" target="_blank">Hybrid Cloud Solutions</a> and will be released under the Apache 2.0 license. Every architectural decision, research document, and design artifact is tracked. The code repos will be open from day one.
+    </p>
+  </section>
+
+  <!-- Why This Exists -->
+  <section class="why">
+    <div class="why-inner">
+      <div class="section-label">Why this project exists</div>
+      <blockquote class="why-statement">
+        <p>Hyper-V is an exceptional hypervisor. After years running it in production — from small businesses to large enterprises — I have never found a reason to question the technology itself. The problem has always been the management tooling around it.</p>
+        <p>Microsoft gave us System Center Virtual Machine Manager, and it was genuinely great. But it required a separate license, a dedicated server, and its own maintenance burden just to keep the management platform running. Open source alternatives are limited and fragmented. Third-party tools range from expensive to eye-wateringly expensive — for capabilities that should come standard with the platform. Nobody should have to pay thousands of dollars a year to properly manage a hypervisor that Microsoft includes with Windows Server.</p>
+        <p>My goal is to build the tool that should already exist: a full-lifecycle management platform for Hyper-V and Azure Local — open source, free — that takes any organization from initial design and capacity planning all the way through deployment, daily operations, updates, hardware management, and eventual retirement. Small business with three servers. Large enterprise with three hundred nodes. Same quality of tooling, no licensing fees, no vendor lock-in.</p>
+        <p>That is the gap. CloudSmith is my attempt to close it. If you share that goal and want to help make it happen, I can always use the help.</p>
+        <cite>— Kris Turner, Hybrid Cloud Solutions</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Project facts -->
+  <section class="facts">
+    <div class="facts-inner">
+      <div class="section-label">Project facts</div>
+      <div class="facts-grid">
+        <div class="fact-card">
+          <h3>License</h3>
+          <p>Apache 2.0 — use it, extend it, ship it. No contributor license agreement required beyond a DCO sign-off.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Roadmap</h3>
+          <p>Phase I–II: architecture and planning. Phase III: design and scaffolding. Phase IV: first code. Follow the build on GitHub.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Contributing</h3>
+          <p>Not ready for code contributions yet — we're still in the architecture phase. Watch the repo and come back for Phase IV.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Community</h3>
+          <p>GitHub Discussions is the community hub. Questions, ideas, and feedback welcome at any phase.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Built by</h3>
+          <p><a href="https://hybridsolutions.cloud" target="_blank">Hybrid Cloud Solutions</a> — Azure Local and Hyper-V specialists based in the US.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Follow the build</h3>
+          <p><a href="https://thisismydemo.cloud" target="_blank">thisismydemo.cloud</a> — architecture walkthroughs and build updates as we go.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About links -->
+  <section class="about-links-section">
+    <div class="about-links-inner">
+      <div class="section-label">Find us</div>
+      <div class="about-links">
+        <a class="about-link" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub Org →</a>
+        <a class="about-link" href="https://support.cloudsmith.cloud">Community Support →</a>
+        <a class="about-link" href="https://docs.cloudsmith.cloud">Documentation →</a>
+        <a class="about-link" href="https://blog.cloudsmith.cloud">Blog →</a>
+        <a class="about-link" href="/preview.html">Private Preview →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>CloudSmith — open source, Apache 2.0</span>
+    <span>
+      <a href="/about.html">About</a> &nbsp;·&nbsp;
+      <a href="/preview.html">Private Preview</a> &nbsp;·&nbsp;
+      <a href="/product.html">Capabilities</a> &nbsp;·&nbsp;
+      <a href="/roadmap.html">Roadmap</a> &nbsp;·&nbsp;
+      <a href="/changelog.html">Changelog</a> &nbsp;·&nbsp;
+      <a href="https://docs.cloudsmith.cloud">Docs</a> &nbsp;·&nbsp;
+      <a href="https://support.cloudsmith.cloud">Support</a> &nbsp;·&nbsp;
+      <a href="https://blog.cloudsmith.cloud">Blog</a> &nbsp;·&nbsp;
+      <a href="https://status.cloudsmith.cloud">Status</a> &nbsp;·&nbsp;
+      <a href="https://cloudsmith.app">cloudsmith.app</a>
+    </span>
+  </footer>
+
+<script>
+  (function() {
+    var btn = document.querySelector('.nav-dropdown-btn');
+    var menu = document.querySelector('.nav-dropdown-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+  })();
+</script>
+</body>
+</html>

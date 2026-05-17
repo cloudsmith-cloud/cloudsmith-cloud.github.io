@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CloudSmith — Forge your private cloud.</title>
-  <meta name="description" content="A modern, open-source cloud platform management solution for Azure Local and Hyper-V environments. Built for engineers, open source by design." />
+  <meta name="description" content="A modern, open-source cloud platform management solution for Hyper-V and Azure Local hybrid cloud environments. Full lifecycle — from design to retirement." />
   <meta property="og:title" content="CloudSmith — Forge your private cloud." />
-  <meta property="og:description" content="Full-lifecycle platform management for Azure Local and Hyper-V. Plan, deploy, operate, and troubleshoot from one place." />
+  <meta property="og:description" content="Full-lifecycle platform management for Hyper-V (Windows Server Failover Clustering) and Azure Local. Plan, deploy, operate, and troubleshoot from one place." />
   <meta property="og:url" content="https://cloudsmith.cloud" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
@@ -394,66 +394,29 @@
 
     .pillar strong { color: var(--text); display: block; }
 
-    /* ── About ── */
-    .about {
-      padding: 5rem 2rem;
+    /* ── About teaser ── */
+    .about-teaser {
+      padding: 4rem 2rem;
       max-width: 860px;
       margin: 0 auto;
     }
-
-    .about h2 {
+    .about-teaser-inner h2 {
       font-size: 1.8rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 1rem;
+      margin: 0.75rem 0 1rem;
     }
-
-    .about-lead {
-      font-size: 1.05rem;
+    .about-teaser-inner p {
+      font-size: 1rem;
       color: var(--muted);
       line-height: 1.8;
-      max-width: 680px;
-      margin-bottom: 2.5rem;
+      max-width: 620px;
+      margin-bottom: 1.5rem;
     }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .about-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 0.6rem;
-      padding: 1.25rem;
-    }
-
-    .about-item h3 {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.35rem;
-    }
-
-    .about-item p, .about-item a {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.6;
-      text-decoration: none;
-    }
-
-    .about-item a:hover { color: var(--orange); }
-
-    .about-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .about-link {
+    .about-teaser-inner a[href*="hybridsolutions"] { color: var(--orange); text-decoration: none; }
+    .about-teaser-inner a[href*="hybridsolutions"]:hover { text-decoration: underline; }
+    .about-teaser-inner .about-link {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
@@ -466,8 +429,7 @@
       border-radius: 0.4rem;
       transition: background 0.15s;
     }
-
-    .about-link:hover { background: rgba(249,115,22,0.08); }
+    .about-teaser-inner .about-link:hover { background: rgba(249,115,22,0.08); }
 
     /* ── Why ── */
     .why {
@@ -598,7 +560,7 @@
       <div class="nav-dropdown">
         <button class="nav-link nav-dropdown-btn">About ▾</button>
         <div class="nav-dropdown-menu">
-          <a href="/#about" class="nav-dropdown-item">About CloudSmith</a>
+          <a href="/about.html" class="nav-dropdown-item">About CloudSmith</a>
           <a href="/preview.html" class="nav-dropdown-item">Private Preview</a>
           <a href="/product.html" class="nav-dropdown-item">Capabilities</a>
           <a href="/roadmap.html" class="nav-dropdown-item">Roadmap</a>
@@ -620,9 +582,9 @@
     <p class="tagline">Forge your private cloud.</p>
     <p class="hero-desc">
       A modern, open-source cloud platform management solution purpose-built for
-      organizations deploying and operating <strong>Microsoft Azure Local</strong> and
-      <strong>Hyper-V cluster</strong> environments. Not a bloated CMP.
-      Not a narrow point tool. A full-lifecycle platform.
+      organizations running <strong>Hyper-V</strong> (Windows Server Failover Clustering)
+      and <strong>Azure Local</strong> hybrid cloud environments — covering the full
+      infrastructure lifecycle from design to retirement.
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href="/preview.html">Join Private Preview →</a>
@@ -771,44 +733,13 @@
     </div>
   </section>
 
-  <!-- About -->
-  <section class="about" id="about">
-    <div class="section-label">The project</div>
-    <h2>Open source, built in the open.</h2>
-    <p class="about-lead">
-      CloudSmith is being built by <a href="https://hybridsolutions.cloud" style="color:var(--orange);text-decoration:none;" target="_blank">Hybrid Cloud Solutions</a> and will be released under the Apache 2.0 license. Every architectural decision, research document, and design artifact is tracked publicly. The code repos will be open from day one.
-    </p>
-    <div class="about-grid">
-      <div class="about-item">
-        <h3>License</h3>
-        <p>Apache 2.0 — use it, extend it, ship it. No contributor license agreement required beyond a DCO sign-off.</p>
-      </div>
-      <div class="about-item">
-        <h3>Roadmap</h3>
-        <p>Phase I–II: architecture and planning. Phase III: design and scaffolding. Phase IV: first code. Follow the build on GitHub.</p>
-      </div>
-      <div class="about-item">
-        <h3>Contributing</h3>
-        <p>Not ready for code contributions yet — we're still in the architecture phase. Watch the repo and come back for Phase IV.</p>
-      </div>
-      <div class="about-item">
-        <h3>Community</h3>
-        <p>GitHub Discussions is the community hub. Questions, ideas, and feedback welcome at any phase.</p>
-      </div>
-      <div class="about-item">
-        <h3>Built by</h3>
-        <p><a href="https://hybridsolutions.cloud" target="_blank">Hybrid Cloud Solutions</a> — Azure Local and Hyper-V specialists based in the US.</p>
-      </div>
-      <div class="about-item">
-        <h3>Follow the build</h3>
-        <p><a href="https://thisismydemo.cloud" target="_blank">thisismydemo.cloud</a> — architecture walkthroughs and build updates as we go.</p>
-      </div>
-    </div>
-    <div class="about-links">
-      <a class="about-link" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub Org →</a>
-      <a class="about-link" href="https://support.cloudsmith.cloud">Community Support →</a>
-      <a class="about-link" href="https://docs.cloudsmith.cloud">Documentation →</a>
-      <a class="about-link" href="https://blog.cloudsmith.cloud">Blog →</a>
+  <!-- About teaser -->
+  <section class="about-teaser">
+    <div class="about-teaser-inner">
+      <div class="section-label">The project</div>
+      <h2>Open source, built in the open.</h2>
+      <p>CloudSmith is being built by <a href="https://hybridsolutions.cloud" target="_blank">Hybrid Cloud Solutions</a> and will be released under the Apache 2.0 license. Every architectural decision and design artifact is tracked. The code repos will be open from day one.</p>
+      <a class="about-link" href="/about.html">Read the full story →</a>
     </div>
   </section>
 
@@ -830,7 +761,7 @@
   <footer>
     <span>CloudSmith — open source, Apache 2.0</span>
     <span>
-      <a href="/#about">About</a>
+      <a href="/about.html">About</a>
       &nbsp;·&nbsp;
       <a href="/preview.html">Private Preview</a>
       &nbsp;·&nbsp;
