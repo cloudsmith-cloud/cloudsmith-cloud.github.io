@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roadmap — CloudSmith</title>
+  <meta name="description" content="The CloudSmith product roadmap — from MVP through advanced capabilities and future releases." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.12);
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: rgba(255,255,255,0.07);
+      --text: #e5e5e5;
+      --muted: #a3a3a3;
+      --dim: #525252;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--orange); }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      padding: 0.45rem 1.1rem;
+      border-radius: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; color: #fff; }
+
+    /* ── Nav dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-dropdown-btn:hover { color: var(--text); }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.4rem;
+      min-width: 180px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-item {
+      display: block;
+      padding: 0.5rem 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 0.3rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-item:hover { background: var(--orange-dim); color: var(--text); }
+    .nav-dropdown-item.active { color: var(--orange); }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 0.75rem; }
+      .nav-links .nav-link { display: none; }
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      padding: 5rem 2rem 3.5rem;
+      text-align: center;
+      background: radial-gradient(ellipse 70% 50% at 50% -5%, var(--orange-dim) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #fff 20%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .phase {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .phase::before {
+      content: '';
+      position: absolute;
+      left: 0.55rem;
+      top: 2.2rem;
+      bottom: -3.5rem;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .phase:last-child::before { display: none; }
+
+    .phase-dot {
+      position: absolute;
+      left: 0;
+      top: 0.6rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phase-dot.active {
+      border-color: var(--orange);
+      background: var(--orange-dim);
+    }
+
+    .phase-dot.active::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .phase-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .phase-card.highlight {
+      border-color: rgba(249,115,22,0.35);
+      background: linear-gradient(135deg, #111111 0%, rgba(249,115,22,0.04) 100%);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .phase-title-block h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+
+    .phase-title-block .phase-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-indev {
+      background: var(--orange-dim);
+      color: var(--orange);
+      border: 1px solid rgba(249,115,22,0.3);
+    }
+
+    .badge-planned {
+      background: rgba(99,102,241,0.1);
+      color: #818cf8;
+      border: 1px solid rgba(99,102,241,0.25);
+    }
+
+    .badge-roadmap {
+      background: rgba(14,165,233,0.1);
+      color: #38bdf8;
+      border: 1px solid rgba(14,165,233,0.25);
+    }
+
+    .badge-parking {
+      background: rgba(82,82,82,0.2);
+      color: var(--dim);
+      border: 1px solid rgba(82,82,82,0.3);
+    }
+
+    .phase-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.6rem;
+    }
+
+    .phase-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .phase-item::before {
+      content: '—';
+      color: var(--dim);
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    .phase-card.highlight .phase-item::before { color: rgba(249,115,22,0.5); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--dim); text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn">About ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="/#about" class="nav-dropdown-item">About CloudSmith</a>
+          <a href="/product.html" class="nav-dropdown-item">Capabilities</a>
+          <a href="/roadmap.html" class="nav-dropdown-item active">Roadmap</a>
+          <a href="/changelog.html" class="nav-dropdown-item">Changelog</a>
+          <a href="/contributing.html" class="nav-dropdown-item">Contributing</a>
+          <a href="/community.html" class="nav-dropdown-item">Community</a>
+        </div>
+      </div>
+      <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
+      <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
+      <a class="nav-cta" href="https://cloudsmith.app">Get Started →</a>
+    </div>
+  </nav>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="page-label">What we're building</div>
+    <h1>Product Roadmap</h1>
+    <p>From MVP to a full-lifecycle platform. CloudSmith is built in phases — each one shippable, each one useful on its own.</p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+
+    <!-- Phase IV -->
+    <div class="phase">
+      <div class="phase-dot active"></div>
+      <div class="phase-card highlight">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phase IV — MVP</h2>
+            <div class="phase-subtitle">The foundation. Everything that comes after builds on this.</div>
+          </div>
+          <span class="status-badge badge-indev">In Development</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">Platform kernel — core, identity, secrets</div>
+          <div class="phase-item">Cluster management and inventory</div>
+          <div class="phase-item">Azure Local deployment pipelines</div>
+          <div class="phase-item">S2D sizing and planning tools (Surveyor absorb)</div>
+          <div class="phase-item">REST API, SDK, CLI, and PowerShell module</div>
+          <div class="phase-item">Standalone on-premises deployment model</div>
+          <div class="phase-item">Azure PaaS deployment model</div>
+          <div class="phase-item">Hybrid deployment model with bidirectional sync</div>
+          <div class="phase-item">Web portal with module-contributed SPA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase V -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phase V — First Operations Layer</h2>
+            <div class="phase-subtitle">Day-two operations: monitoring, hardware, updates, and workloads.</div>
+          </div>
+          <span class="status-badge badge-planned">Planned</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
+          <div class="phase-item">Azure Monitor Workspace metrics + DCR pipelines</div>
+          <div class="phase-item">VictoriaMetrics for standalone on-prem monitoring</div>
+          <div class="phase-item">OS update orchestration (Azure Update Manager, LCM)</div>
+          <div class="phase-item">AI-assisted troubleshooting</div>
+          <div class="phase-item">Workload management — VMs and templates</div>
+          <div class="phase-item">Self-hosted image library (ISOs, VHDs)</div>
+          <div class="phase-item">Optional Azure image connectors (Marketplace, Compute Gallery)</div>
+          <div class="phase-item">MSP multi-tenancy</div>
+          <div class="phase-item">Runner payload library</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase VI -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phase VI — Ecosystem Expansion</h2>
+            <div class="phase-subtitle">Broader hardware support, Hyper-V clusters, and discovery.</div>
+          </div>
+          <span class="status-badge badge-planned">Planned</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">Bidirectional on-prem ↔ PaaS sync engine</div>
+          <div class="phase-item">Hyper-V cluster deployment (standalone, WSFC)</div>
+          <div class="phase-item">Workload discovery and assessment</div>
+          <div class="phase-item">As-built documentation generation</div>
+          <div class="phase-item">Lenovo XCC hardware support</div>
+          <div class="phase-item">HPE iLO hardware support</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post-MVP -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Post-MVP — Advanced Capabilities</h2>
+            <div class="phase-subtitle">Security, governance, integrations, and expanded workload coverage.</div>
+          </div>
+          <span class="status-badge badge-roadmap">Roadmap</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">Security posture — Defender for Servers, CIS scanning, vulnerability management</div>
+          <div class="phase-item">Governance and policy-as-code</div>
+          <div class="phase-item">FinOps and cost reporting</div>
+          <div class="phase-item">ITSM integration — ServiceNow</div>
+          <div class="phase-item">Backup visibility — Commvault, Veeam</div>
+          <div class="phase-item">AKS on Azure Local</div>
+          <div class="phase-item">Azure Virtual Desktop (AVD + FSLogix)</div>
+          <div class="phase-item">VMware/Nutanix migration tooling</div>
+          <div class="phase-item">Decommissioning and retirement workflows</div>
+          <div class="phase-item">Workload optimization and right-sizing</div>
+          <div class="phase-item">Lightweight on-host agent (cs-agent)</div>
+          <div class="phase-item">Terraform / Pulumi / Bicep IaC provider</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Future -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Future — Later Releases</h2>
+            <div class="phase-subtitle">Parking lot items. No committed timeline — evaluated after core platform matures.</div>
+          </div>
+          <span class="status-badge badge-parking">Parking Lot</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">Multi-cloud resource inventory (AWS/GCP via Azure Arc connectors)</div>
+          <div class="phase-item">MCP Server (Model Context Protocol integration)</div>
+          <div class="phase-item">FedRAMP / IL4 compliance posture</div>
+          <div class="phase-item">Bare-metal PXE provisioning</div>
+          <div class="phase-item">SaaS managed offering</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span>CloudSmith — open source, Apache 2.0</span>
+    <span>
+      <a href="/#about">About</a> &nbsp;·&nbsp;
+      <a href="/product.html">Capabilities</a> &nbsp;·&nbsp;
+      <a href="/roadmap.html">Roadmap</a> &nbsp;·&nbsp;
+      <a href="/changelog.html">Changelog</a> &nbsp;·&nbsp;
+      <a href="https://docs.cloudsmith.cloud">Docs</a> &nbsp;·&nbsp;
+      <a href="https://support.cloudsmith.cloud">Support</a> &nbsp;·&nbsp;
+      <a href="https://blog.cloudsmith.cloud">Blog</a> &nbsp;·&nbsp;
+      <a href="https://status.cloudsmith.cloud">Status</a> &nbsp;·&nbsp;
+      <a href="https://cloudsmith.app">cloudsmith.app</a>
+    </span>
+  </footer>
+
+</body>
+</html>

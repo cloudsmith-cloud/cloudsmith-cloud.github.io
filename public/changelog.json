@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2026-05-16",
+    "type": "planning",
+    "title": "Monitoring Architecture — ADR-016 finalized",
+    "description": "Azure Monitor Workspace (AMW) selected for PaaS metrics. DCR transformation pipeline designed with multi-destination fan-out (Analytics, Auxiliary, Alerts). VictoriaMetrics for standalone on-prem. Log collection + syslog forwarding (cloudsmith-siem-forwarder) for on-prem security event export."
+  },
+  {
+    "date": "2026-05-16",
+    "type": "planning",
+    "title": "Image Library Architecture — ADR-013 finalized",
+    "description": "Self-hosted image catalog (like SCVMM) confirmed as the primary design. Operators upload ISOs and VHDs directly. Optional Azure connectors (Marketplace, Compute Gallery, Storage Account, Image Builder) provide additional import paths when Azure connectivity is available."
+  },
+  {
+    "date": "2026-05-16",
+    "type": "planning",
+    "title": "Secrets Management — ADR-009 finalized",
+    "description": "Azure Key Vault for PaaS and hybrid deployments. PostgreSQL-encrypted secrets provider (AES-256-GCM, DPAPI master key) for standalone on-premises — no new services required at MVP. OpenBao available as optional production-hardening path."
+  },
+  {
+    "date": "2026-05-16",
+    "type": "planning",
+    "title": "Module Catalog expanded to 43 modules",
+    "description": "The CloudSmith module catalog grew from 11 to 43 entries across 8 categories: Platform Core, Security & Governance, Lifecycle, Workload, Hardware, Overlay, Integration, and External Surfaces. Phase IV MVP scope confirmed: core + identity + secrets + inventory + cluster-mgmt + deploy + planning."
+  },
+  {
+    "date": "2026-05-16",
+    "type": "planning",
+    "title": "Web & API framework decisions — ADR-019 and ADR-020",
+    "description": "React + TypeScript + Vite selected for the portal SPA (ADR-019). .NET 9 Minimal API selected for the REST API layer (ADR-020). Module-contributed UI slots and API routes enable clean extension points for community modules."
+  },
+  {
+    "date": "2026-05-16",
+    "type": "planning",
+    "title": "Four Phase A research documents completed",
+    "description": "Lifecycle Framework Comparison, Module Connection Model, Persona-Capability Trace, and Deployment Model Feasibility research documents completed. Establishes the research foundation for Phase B catalog rewrite and full design phase."
+  },
+  {
+    "date": "2026-05-15",
+    "type": "planning",
+    "title": "ADR-003: Apache 2.0 License — DECIDED",
+    "description": "CloudSmith will be released under the Apache 2.0 license. No contributor license agreement required beyond a DCO sign-off. Copyleft-free for commercial and MSP use."
+  },
+  {
+    "date": "2026-05-15",
+    "type": "planning",
+    "title": "ADR-001/002: Project management and repository topology — DECIDED",
+    "description": "Azure DevOps with agile sprints for project management. Monorepo-per-layer topology: cloudsmith-core, cloudsmith-portal, cloudsmith-api, cloudsmith-modules, cloudsmith-runners, cloudsmith-deploy, cloudsmith-docs — each an independent repo in the cloudsmith-cloud GitHub org."
+  },
+  {
+    "date": "2026-05-15",
+    "type": "planning",
+    "title": "Phase I research complete — 11 research documents",
+    "description": "Completed research on: database strategy (PostgreSQL), storage strategy, hosting (Azure Container Apps), hardware vendor APIs (Dell iDRAC, Lenovo XCC, HPE iLO, DataOn), competitive landscape (SCVMM, vCenter, ManageIQ, Nutanix), and CloudSmith domain design."
+  },
+  {
+    "date": "2026-05-14",
+    "type": "milestone",
+    "title": "Project kickoff — Phase I begins",
+    "description": "CloudSmith architecture and planning phase started. ADR-000 (project name, cloudsmith.cloud domain) decided. GitHub org created at github.com/cloudsmith-cloud. Architecture Decision Records process established."
+  }
+]

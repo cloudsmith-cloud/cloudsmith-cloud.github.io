@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CloudSmith — Capabilities</title>
+  <meta name="description" content="The full CloudSmith capability set — every module, every deployment model, every lifecycle pillar. Everything CloudSmith will do when fully built." />
+  <meta property="og:title" content="CloudSmith — Capabilities" />
+  <meta property="og:description" content="Full module catalog, deployment models, Six Pillars lifecycle framework, and target personas for CloudSmith — the open-source Azure Local and Hyper-V management platform." />
+  <meta property="og:url" content="https://cloudsmith.cloud/product.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.12);
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: rgba(255,255,255,0.07);
+      --text: #e5e5e5;
+      --muted: #a3a3a3;
+      --dim: #525252;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--orange); }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      padding: 0.45rem 1.1rem;
+      border-radius: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; color: #fff; }
+
+    /* Nav dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .nav-dropdown-btn:hover { color: var(--text); }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.4rem;
+      min-width: 180px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-item {
+      display: block;
+      padding: 0.5rem 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 0.3rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-item:hover { background: var(--orange-dim); color: var(--text); }
+    .nav-dropdown-item.active { color: var(--orange); }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 0.75rem; }
+      .nav-links .nav-link:not(.nav-cta) { display: none; }
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 2rem 4.5rem;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% -5%, var(--orange-dim) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #fff 20%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 2.25rem;
+      line-height: 1.75;
+    }
+
+    .hero-desc strong { color: var(--text); }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat .num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: -0.03em;
+      display: block;
+    }
+
+    .hero-stat .lbl {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Content wrapper ── */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 4.5rem 2rem;
+    }
+
+    .section-alt {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-top: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .section-header h2 span { color: var(--orange); }
+
+    .section-header p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0.75rem auto 0;
+      line-height: 1.7;
+    }
+
+    /* ── Cards grid ── */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 860px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(249,115,22,0.35);
+      transform: translateY(-2px);
+    }
+
+    .card-on-surface {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card-on-surface:hover {
+      border-color: rgba(249,115,22,0.35);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .card p, .card-on-surface p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .card-on-surface h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── Module list ── */
+    .module-group {
+      margin-bottom: 3rem;
+    }
+
+    .module-group:last-child { margin-bottom: 0; }
+
+    .module-group-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .phase-tag {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 9999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .phase-mvp { background: rgba(249,115,22,0.15); color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
+    .phase-v { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.25); }
+    .phase-vi { background: rgba(34,197,94,0.1); color: #86efac; border: 1px solid rgba(34,197,94,0.2); }
+    .phase-future { background: rgba(255,255,255,0.05); color: var(--dim); border: 1px solid var(--border); }
+
+    .module-group-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .module-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .section-alt .module-card {
+      background: #161616;
+    }
+
+    .module-card:hover { border-color: rgba(249,115,22,0.3); }
+
+    .module-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      margin-bottom: 0.35rem;
+    }
+
+    .module-name span {
+      color: var(--orange);
+    }
+
+    .module-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .module-bullets li {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+
+    .module-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--dim);
+    }
+
+    /* ── Pillars ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .pillar-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card:hover {
+      border-color: rgba(249,115,22,0.35);
+      transform: translateY(-2px);
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--orange);
+      opacity: 0.5;
+    }
+
+    .pillar-num {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .pillar-modules {
+      margin-top: 0.65rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .pillar-module-tag {
+      font-size: 0.7rem;
+      background: var(--orange-dim);
+      color: var(--orange);
+      border-radius: 0.3rem;
+      padding: 0.15rem 0.5rem;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    /* ── Deployment models ── */
+    .deploy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .deploy-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+
+    .deploy-card:hover {
+      border-color: rgba(249,115,22,0.35);
+      transform: translateY(-2px);
+    }
+
+    .deploy-card.featured {
+      border-color: rgba(249,115,22,0.4);
+    }
+
+    .deploy-card.featured::after {
+      content: 'Most Common';
+      position: absolute;
+      top: -0.6rem;
+      right: 1.25rem;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.7rem;
+      border-radius: 9999px;
+    }
+
+    .deploy-num {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .deploy-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .deploy-card .desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .deploy-facts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .deploy-facts li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.35rem;
+    }
+
+    .deploy-facts li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 0.72rem;
+    }
+
+    /* ── Personas ── */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .persona-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .persona-card:hover {
+      border-color: rgba(249,115,22,0.35);
+      transform: translateY(-2px);
+    }
+
+    .persona-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+
+    .persona-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .persona-card .persona-role {
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.65rem;
+    }
+
+    .persona-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .persona-uses {
+      margin-top: 0.75rem;
+    }
+
+    .persona-uses-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 0.35rem;
+    }
+
+    .persona-use-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .persona-use-tag {
+      font-size: 0.72rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 0.3rem;
+      padding: 0.15rem 0.5rem;
+    }
+
+    /* ── Phases timeline ── */
+    .phases-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .phases-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .phases-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--muted);
+    }
+
+    .phases-table tr:last-child td { border-bottom: none; }
+
+    .phases-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .phase-name {
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .phase-focus {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .phase-modules {
+      font-size: 0.78rem;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: radial-gradient(ellipse 60% 50% at 50% 100%, var(--orange-dim) 0%, transparent 70%);
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--dim); text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    /* ── Misc ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 700px) {
+      .hero-stats { gap: 1.75rem; }
+      .phases-table { font-size: 0.8rem; }
+      .phases-table th, .phases-table td { padding: 0.65rem 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn">About &#9662;</button>
+        <div class="nav-dropdown-menu">
+          <a href="/#about" class="nav-dropdown-item">About CloudSmith</a>
+          <a href="/product.html" class="nav-dropdown-item active">Capabilities</a>
+          <a href="/roadmap.html" class="nav-dropdown-item">Roadmap</a>
+          <a href="/changelog.html" class="nav-dropdown-item">Changelog</a>
+          <a href="/contributing.html" class="nav-dropdown-item">Contributing</a>
+          <a href="/community.html" class="nav-dropdown-item">Community</a>
+        </div>
+      </div>
+      <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
+      <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
+      <a class="nav-cta" href="https://cloudsmith.app">Get Started &#8594;</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">Full Capability Overview</div>
+    <h1>Everything CloudSmith Does</h1>
+    <p class="hero-desc">
+      CloudSmith is a <strong>full-lifecycle platform</strong> for Azure Local and Hyper-V environments.
+      Not a deployment tool. Not a monitoring add-on. Every capability — from pre-sales sizing to day-2 operations to retirement — in one modular, composable platform.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">43+</span>
+        <span class="lbl">Modules planned</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">6</span>
+        <span class="lbl">Lifecycle pillars</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">3</span>
+        <span class="lbl">Deployment models</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">4</span>
+        <span class="lbl">Target personas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is CloudSmith -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">The problem it solves</div>
+        <h2>Azure Local and Hyper-V are <span>hard to manage at scale</span></h2>
+        <p>
+          Today's operations teams rely on fragmented tooling — scripts, SCVMM, Windows Admin Center, vendor consoles, spreadsheets, and tribal knowledge. CloudSmith replaces that patchwork with a single, extensible platform that covers the entire infrastructure lifecycle.
+        </p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">&#128736;</div>
+          <h3>Full Lifecycle — Not Just Day 1</h3>
+          <p>Strategy and sizing, deployment, day-2 operations, security, governance, optimization, and eventual retirement. Every phase is a first-class capability, not an afterthought.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#129529;</div>
+          <h3>Modular — Use Only What You Need</h3>
+          <p>Enable the Planning module without enabling Monitoring. Enable Troubleshooting without enabling Deployment. Every module installs, upgrades, and removes independently. No bloat forced on you.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#129302;</div>
+          <h3>AI-Assisted, Not AI-Dependent</h3>
+          <p>Intelligent log analysis, anomaly detection, guided diagnostics, and natural-language queries enhance your engineers — they don't replace them. AI is always optional and explainable.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#127970;</div>
+          <h3>MSP-Ready from Day One</h3>
+          <p>Multi-tenant, scoped RBAC, delegated access via Azure Lighthouse, and white-label branding. Managing 30 customers is the same experience as managing 1 — just scaled.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128295;</div>
+          <h3>Deep OEM Hardware Integration</h3>
+          <p>Dell iDRAC, Lenovo XCC, HPE iLO, and DataOn hardware — all first-class targets behind a single abstraction layer. Firmware inventory, health, boot control, and OOB operations unified.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#127758;</div>
+          <h3>Open Source, Apache 2.0</h3>
+          <p>No proprietary lock-in. Self-host it, extend it, contribute to it. Community and OEM partners can ship modules into the same registry that ships with the platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Six Pillars -->
+  <section class="section section-alt" id="pillars">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Framework</div>
+        <h2>The Six Pillars <span>Lifecycle Framework</span></h2>
+        <p>
+          CloudSmith organizes every capability around six lifecycle pillars — the complete journey from first conversations with a customer through years of steady-state operations and, eventually, graceful retirement.
+        </p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-num">Pillar 1</div>
+          <h3>Strategy &amp; Assessment</h3>
+          <p>Workload discovery, TCO and ROI analysis, vendor selection, cloud-vs-on-prem decision support. Answers the "should we, and if so — what hardware?" question.</p>
+          <div class="pillar-modules">
+            <div class="pillar-module-tag">assessment</div>
+            <div class="pillar-module-tag">planning</div>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">Pillar 2</div>
+          <h3>Architecture &amp; Design</h3>
+          <p>S2D capacity sizing, Bill of Materials generation, network topology design, site surveys, Azure Local vs. Hyper-V decision questionnaire. Design artifacts, not guesswork.</p>
+          <div class="pillar-modules">
+            <div class="pillar-module-tag">planning</div>
+            <div class="pillar-module-tag">docs-gen</div>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">Pillar 3</div>
+          <h3>Build &amp; Deployment</h3>
+          <p>Automated cluster deployment for Azure Local and Hyper-V. Storage Spaces Direct configuration, Network ATC, Arc onboarding, pre-flight validation. Repeatable, auditable, pipeline-driven.</p>
+          <div class="pillar-modules">
+            <div class="pillar-module-tag">deploy</div>
+            <div class="pillar-module-tag">cluster-mgmt</div>
+            <div class="pillar-module-tag">hardware-*</div>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">Pillar 4</div>
+          <h3>Operations — Day 2</h3>
+          <p>Monitoring, update management, troubleshooting, workload lifecycle, image library, AI-assisted diagnostics, ITSM integration. The daily platform — not a one-time event.</p>
+          <div class="pillar-modules">
+            <div class="pillar-module-tag">monitoring</div>
+            <div class="pillar-module-tag">update</div>
+            <div class="pillar-module-tag">troubleshooting</div>
+            <div class="pillar-module-tag">workload</div>
+            <div class="pillar-module-tag">itsm</div>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">Pillar 5</div>
+          <h3>Security &amp; Governance</h3>
+          <p>Identity and access management, secrets management, security posture, compliance scanning, policy-as-code. Security is the foundation — not a module you bolt on later.</p>
+          <div class="pillar-modules">
+            <div class="pillar-module-tag">identity</div>
+            <div class="pillar-module-tag">secrets</div>
+            <div class="pillar-module-tag">security</div>
+            <div class="pillar-module-tag">governance</div>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">Pillar 6</div>
+          <h3>Optimization &amp; Evolution</h3>
+          <p>Right-sizing recommendations, resource reclamation, workload placement optimization, cost reporting and chargeback, modernization paths. Make what you have work harder.</p>
+          <div class="pillar-modules">
+            <div class="pillar-module-tag">optimization</div>
+            <div class="pillar-module-tag">finops</div>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">Post-MVP</div>
+          <h3>Retirement</h3>
+          <p>Graceful decommissioning workflows, data sanitization, asset disposal tracking. The part every platform forgets to build. CloudSmith doesn't.</p>
+          <div class="pillar-modules">
+            <div class="pillar-module-tag">retirement</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module catalog -->
+  <section class="section" id="modules">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Module Catalog</div>
+        <h2>Every capability. <span>One platform.</span></h2>
+        <p>
+          CloudSmith's modular architecture means every capability is an independently installable module. Enable what you need today — grow into the rest when you're ready.
+        </p>
+      </div>
+
+      <!-- Phase IV — MVP -->
+      <div class="module-group">
+        <div class="module-group-header">
+          <span class="phase-tag phase-mvp">Phase IV — MVP</span>
+          <span class="module-group-title">Platform Kernel &amp; Core Infrastructure</span>
+        </div>
+        <div class="module-grid">
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-core</div>
+            <ul class="module-bullets">
+              <li>Module registry and lifecycle management</li>
+              <li>Portal shell and navigation framework</li>
+              <li>Event bus for inter-module communication</li>
+              <li>Centralized audit log</li>
+              <li>Notifications and alerting backbone</li>
+              <li>License and entitlement tracking</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-identity</div>
+            <ul class="module-bullets">
+              <li>Entra ID and Active Directory integration</li>
+              <li>Local identity provider fallback</li>
+              <li>Multi-factor authentication</li>
+              <li>JWT-based session management</li>
+              <li>Role-based access control (RBAC)</li>
+              <li>Org and tenant model for multi-site</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-secrets</div>
+            <ul class="module-bullets">
+              <li>Azure Key Vault integration (PaaS/hybrid)</li>
+              <li>PostgreSQL-encrypted secrets store (on-prem)</li>
+              <li>Provider abstraction — swap without reconfiguring consumers</li>
+              <li>Secret rotation and audit trail</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-inventory</div>
+            <ul class="module-bullets">
+              <li>Hardware and cluster inventory discovery</li>
+              <li>Ranger collector framework for extensible data gathering</li>
+              <li>Configuration drift detection and alerting</li>
+              <li>CMDB-style asset tracking</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-cluster-mgmt</div>
+            <ul class="module-bullets">
+              <li>Cluster lifecycle management (create/expand/remove)</li>
+              <li>Node management and health</li>
+              <li>Azure tenant and subscription discovery</li>
+              <li>Network scanning and topology awareness</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-deploy</div>
+            <ul class="module-bullets">
+              <li>Azure Local deployment pipelines (end-to-end)</li>
+              <li>Storage Spaces Direct (S2D) configuration</li>
+              <li>Network ATC intent-based networking setup</li>
+              <li>Azure Arc onboarding automation</li>
+              <li>Pre-flight validation checks</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-planning</div>
+            <ul class="module-bullets">
+              <li>S2D capacity sizing calculator</li>
+              <li>Bill of Materials (BoM) generator</li>
+              <li>Network topology designer</li>
+              <li>Site survey workflows</li>
+              <li>Azure Local vs. Hyper-V decision questionnaire</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-api</div>
+            <ul class="module-bullets">
+              <li>Unified REST API surface</li>
+              <li>Single OpenAPI 3.x specification</li>
+              <li>Module-contributed route registration</li>
+              <li>Versioned API contracts</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-sdk</div>
+            <ul class="module-bullets">
+              <li>.NET module-author SDK for building CloudSmith modules</li>
+              <li>Customer client SDK for API integration</li>
+              <li>Type-safe API wrappers</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-cli</div>
+            <ul class="module-bullets">
+              <li><code>cs</code> / <code>cloudsmith</code> CLI</li>
+              <li>Full API surface from the terminal</li>
+              <li>Scriptable pipeline-friendly output</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-powershell</div>
+            <ul class="module-bullets">
+              <li>CloudSmith.* PowerShell Gallery namespace</li>
+              <li>Native PowerShell experience for Windows operators</li>
+              <li>Pipeline-compatible cmdlets</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase V -->
+      <div class="module-group">
+        <div class="module-group-header">
+          <span class="phase-tag phase-v">Phase V — First Operations Layer</span>
+          <span class="module-group-title">Operations, Hardware, and Intelligence</span>
+        </div>
+        <div class="module-grid">
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-hardware-dell</div>
+            <ul class="module-bullets">
+              <li>Dell iDRAC 9 and 10 integration</li>
+              <li>DMTF Redfish protocol</li>
+              <li>Firmware inventory and update orchestration</li>
+              <li>Out-of-band (OOB) health monitoring</li>
+              <li>Boot control and virtual media</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-hardware-generic-redfish</div>
+            <ul class="module-bullets">
+              <li>DMTF Redfish fallback for any vendor</li>
+              <li>Baseline hardware health for non-primary OEM targets</li>
+              <li>Standard firmware inventory via standard protocol</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-monitoring</div>
+            <ul class="module-bullets">
+              <li>Azure Monitor Workspace with Prometheus</li>
+              <li>Log Analytics Workspace (LAW) integration</li>
+              <li>DCR transformation pipelines</li>
+              <li>VictoriaMetrics for fully air-gapped on-prem</li>
+              <li>Alerting rules and notification routing</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-update</div>
+            <ul class="module-bullets">
+              <li>OS update orchestration across the cluster</li>
+              <li>Azure Local Lifecycle Manager (LCM) integration</li>
+              <li>Azure Update Manager integration</li>
+              <li>Update rings and phased rollout policies</li>
+              <li>Hotpatching support</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-troubleshooting</div>
+            <ul class="module-bullets">
+              <li>Centralized log collection from hosts and clusters</li>
+              <li>Guided remediation workflows</li>
+              <li>AI-assisted log analysis and issue identification</li>
+              <li>Built-in diagnostic playbooks</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-workload</div>
+            <ul class="module-bullets">
+              <li>VM provisioning and lifecycle management</li>
+              <li>VM templates and golden images</li>
+              <li>Quota management and resource governance</li>
+              <li>Intelligent workload placement</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-image-library</div>
+            <ul class="module-bullets">
+              <li>Self-hosted image catalog (ISOs, VHDs, VHDXs)</li>
+              <li>Azure Marketplace connector (optional)</li>
+              <li>Azure Compute Gallery connector (optional)</li>
+              <li>Azure Storage Account sync (optional)</li>
+              <li>Azure Image Builder integration (optional)</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-ai-engine</div>
+            <ul class="module-bullets">
+              <li>Ollama as the default local AI provider</li>
+              <li>Cloud AI provider connectors (pluggable)</li>
+              <li>Log pattern analysis and anomaly detection</li>
+              <li>Natural-language query across platform data</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-msp</div>
+            <ul class="module-bullets">
+              <li>Multi-customer management from a single control plane</li>
+              <li>Scoped RBAC delegation per customer</li>
+              <li>Azure Lighthouse integration</li>
+              <li>White-label branding for customer portals</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-runners</div>
+            <ul class="module-bullets">
+              <li>Versioned PowerShell 7 runner payload library</li>
+              <li>Runner registration and management</li>
+              <li>Secure outbound execution — no inbound ports required</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase VI -->
+      <div class="module-group">
+        <div class="module-group-header">
+          <span class="phase-tag phase-vi">Phase VI</span>
+          <span class="module-group-title">Hyper-V Renaissance, Sync &amp; Design Documentation</span>
+        </div>
+        <div class="module-grid">
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-sync</div>
+            <ul class="module-bullets">
+              <li>Bidirectional on-premises &#8596; PaaS selective sync</li>
+              <li>Conflict resolution and sync policies</li>
+              <li>Offline-capable with eventual consistency</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-deploy-hyperv</div>
+            <ul class="module-bullets">
+              <li>Windows Server Failover Clustering (WSFC) deployment</li>
+              <li>Hyper-V cluster deployment pipelines</li>
+              <li>Parity with Azure Local deploy module</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-assessment</div>
+            <ul class="module-bullets">
+              <li>Workload discovery and classification</li>
+              <li>TCO and ROI modeling</li>
+              <li>Vendor selection scoring matrix</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-docs-gen</div>
+            <ul class="module-bullets">
+              <li>Automated as-built documentation generation</li>
+              <li>draw.io network topology export</li>
+              <li>Change-log diffs between infrastructure snapshots</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Future / Post-MVP -->
+      <div class="module-group">
+        <div class="module-group-header">
+          <span class="phase-tag phase-future">Post-MVP &amp; Future</span>
+          <span class="module-group-title">Extended Ecosystem Modules</span>
+        </div>
+        <div class="module-grid">
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-security</div>
+            <ul class="module-bullets">
+              <li>Security posture assessment</li>
+              <li>Microsoft Defender for Servers integration</li>
+              <li>Vulnerability scanning</li>
+              <li>CIS benchmark baselines</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-governance</div>
+            <ul class="module-bullets">
+              <li>Policy engine and enforcement</li>
+              <li>Compliance scanning against frameworks</li>
+              <li>Policy-as-code pipelines</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-finops</div>
+            <ul class="module-bullets">
+              <li>Cost reporting and dashboards</li>
+              <li>Chargeback and showback by tenant or workload</li>
+              <li>Right-sizing recommendations</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-itsm</div>
+            <ul class="module-bullets">
+              <li>ServiceNow integration</li>
+              <li>Change management workflows</li>
+              <li>Service request fulfillment</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-bcdr</div>
+            <ul class="module-bullets">
+              <li>Backup integration (Commvault, Veeam)</li>
+              <li>DR design and documentation</li>
+              <li>DR runbook testing and validation</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-hardware-lenovo</div>
+            <ul class="module-bullets">
+              <li>Lenovo XCC Redfish integration</li>
+              <li>Firmware inventory and OOB health</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-hardware-hpe</div>
+            <ul class="module-bullets">
+              <li>HPE iLO Redfish integration</li>
+              <li>Firmware inventory and OOB health</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-hardware-dataon</div>
+            <ul class="module-bullets">
+              <li>DataOn vendor-specific extensions</li>
+              <li>DataOn appliance lifecycle management</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-aks</div>
+            <ul class="module-bullets">
+              <li>AKS on Azure Local workload lifecycle</li>
+              <li>Cluster provisioning and node pool management</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-avd</div>
+            <ul class="module-bullets">
+              <li>Azure Virtual Desktop workload management</li>
+              <li>FSLogix profile container lifecycle</li>
+              <li>Session host image management</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-migration</div>
+            <ul class="module-bullets">
+              <li>VMware and Nutanix workload migration</li>
+              <li>VM Conversion Toolkit integration</li>
+              <li>Migration wave planning and tracking</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-retirement</div>
+            <ul class="module-bullets">
+              <li>Decommissioning workflows and checklists</li>
+              <li>Data sanitization automation</li>
+              <li>Asset disposal tracking and documentation</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-optimization</div>
+            <ul class="module-bullets">
+              <li>Right-sizing recommendations from telemetry</li>
+              <li>Stranded capacity reclamation</li>
+              <li>Workload placement optimization</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-agent</div>
+            <ul class="module-bullets">
+              <li>Lightweight optional on-host agent</li>
+              <li>Enhanced local telemetry collection</li>
+              <li>Agentless WinRM fallback always available</li>
+            </ul>
+          </div>
+          <div class="module-card">
+            <div class="module-name"><span>cloudsmith</span>-iac</div>
+            <ul class="module-bullets">
+              <li>Terraform provider for CloudSmith resources</li>
+              <li>Pulumi provider support</li>
+              <li>Bicep module library</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Deployment models -->
+  <section class="section section-alt" id="deployment">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Deployment Models</div>
+        <h2>Run it <span>where your environment demands</span></h2>
+        <p>
+          CloudSmith doesn't dictate where the control plane lives. Three models — pick what fits your security posture, connectivity requirements, and operational model today. You can migrate between models later.
+        </p>
+      </div>
+      <div class="deploy-grid">
+        <div class="deploy-card">
+          <div class="deploy-num">Model 1</div>
+          <h3>Standalone On-Premises</h3>
+          <p class="desc">
+            The full CloudSmith control plane runs inside your data center. No Azure dependency required at runtime. Air-gapped environments supported. You own everything.
+          </p>
+          <ul class="deploy-facts">
+            <li>Complete control plane on-prem</li>
+            <li>No Azure subscription required</li>
+            <li>Air-gapped and disconnected-capable</li>
+            <li>PostgreSQL + local secrets store</li>
+            <li>VictoriaMetrics for fully local observability</li>
+            <li>Ollama for local AI (GPU optional)</li>
+          </ul>
+        </div>
+        <div class="deploy-card featured">
+          <div class="deploy-num">Model 2</div>
+          <h3>Azure PaaS</h3>
+          <p class="desc">
+            CloudSmith control plane runs in Azure Container Apps. Lightweight runners execute on-premises and report back. Ideal for MSPs and organizations already invested in Azure.
+          </p>
+          <ul class="deploy-facts">
+            <li>Control plane hosted in Azure Container Apps</li>
+            <li>Runners deployed on-premises (outbound only)</li>
+            <li>Azure Key Vault for secrets</li>
+            <li>Azure Monitor Workspace + Log Analytics</li>
+            <li>Azure AD / Entra ID native auth</li>
+            <li>No inbound firewall rules required on-prem</li>
+          </ul>
+        </div>
+        <div class="deploy-card">
+          <div class="deploy-num">Model 3</div>
+          <h3>Hybrid</h3>
+          <p class="desc">
+            On-premises instance and PaaS control plane operate independently, connected by bidirectional selective sync. Best of both: local execution with cloud visibility and management.
+          </p>
+          <ul class="deploy-facts">
+            <li>On-prem and PaaS control planes both active</li>
+            <li>Bidirectional sync via cloudsmith-sync module</li>
+            <li>Selective — sync only what you choose</li>
+            <li>Continues to function if connectivity is lost</li>
+            <li>Conflict resolution and eventual consistency</li>
+            <li>MSP overlay works across both planes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Phases / Roadmap summary -->
+  <section class="section" id="phases">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Build Phases</div>
+        <h2>MVP first. <span>Everything else follows.</span></h2>
+        <p>
+          CloudSmith ships incrementally. The MVP ships a working platform — planning, deployment, identity, and the full API surface. Operations and extended features follow in subsequent phases.
+        </p>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="phases-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Name</th>
+              <th>Focus</th>
+              <th>Key Modules</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="phase-tag phase-mvp" style="white-space:nowrap">Phase IV</span></td>
+              <td class="phase-name">MVP</td>
+              <td class="phase-focus">Platform kernel, identity, secrets, inventory, cluster management, deployment, planning, and the full external surface (API, SDK, CLI, PowerShell)</td>
+              <td class="phase-modules">core, identity, secrets, inventory, cluster-mgmt, deploy, planning, api, sdk, cli, powershell</td>
+            </tr>
+            <tr>
+              <td><span class="phase-tag phase-v" style="white-space:nowrap">Phase V</span></td>
+              <td class="phase-name">First Operations</td>
+              <td class="phase-focus">Day-2 operations: hardware management (Dell + generic Redfish), monitoring, updates, troubleshooting, workload lifecycle, image library, AI engine, MSP, runners</td>
+              <td class="phase-modules">hardware-dell, hardware-generic-redfish, monitoring, update, troubleshooting, workload, image-library, ai-engine, msp, runners</td>
+            </tr>
+            <tr>
+              <td><span class="phase-tag phase-vi" style="white-space:nowrap">Phase VI</span></td>
+              <td class="phase-name">Hyper-V Renaissance</td>
+              <td class="phase-focus">Bidirectional sync, full Hyper-V cluster deployment parity, workload discovery and assessment, as-built documentation generation</td>
+              <td class="phase-modules">sync, deploy-hyperv, assessment, docs-gen</td>
+            </tr>
+            <tr>
+              <td><span class="phase-tag phase-future" style="white-space:nowrap">Post-MVP</span></td>
+              <td class="phase-name">Extended Ecosystem</td>
+              <td class="phase-focus">Security posture, governance, FinOps, ITSM, BCDR, Lenovo/HPE/DataOn hardware, AKS, AVD, migration, retirement, optimization, on-host agent, IaC providers</td>
+              <td class="phase-modules">security, governance, finops, itsm, bcdr, hardware-lenovo, hardware-hpe, hardware-dataon, aks, avd, migration, retirement, optimization, agent, iac</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personas -->
+  <section class="section section-alt" id="personas">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Who It's For</div>
+        <h2>Built for the people <span>doing the work</span></h2>
+        <p>
+          CloudSmith isn't a C-suite dashboard. It's a platform built for the engineers and operators who plan, deploy, and run Azure Local and Hyper-V environments every day.
+        </p>
+      </div>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-icon">&#128296;</div>
+          <div class="persona-role">Field Engineer</div>
+          <h3>The person on the ground</h3>
+          <p>Deploys and operates Azure Local and Hyper-V clusters day-to-day. Lives in the terminal. Needs fast answers and guided workflows — not dashboards designed for a demo.</p>
+          <div class="persona-uses">
+            <div class="persona-uses-label">Primary modules</div>
+            <div class="persona-use-tags">
+              <span class="persona-use-tag">deploy</span>
+              <span class="persona-use-tag">cluster-mgmt</span>
+              <span class="persona-use-tag">troubleshooting</span>
+              <span class="persona-use-tag">hardware-*</span>
+              <span class="persona-use-tag">update</span>
+              <span class="persona-use-tag">cli</span>
+              <span class="persona-use-tag">powershell</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">&#128202;</div>
+          <div class="persona-role">Solutions Architect</div>
+          <h3>The designer and sizer</h3>
+          <p>Designs the infrastructure, creates Bills of Materials, sizes S2D clusters, plans network topology. Needs calculation tools and output artifacts — not vague spreadsheets.</p>
+          <div class="persona-uses">
+            <div class="persona-uses-label">Primary modules</div>
+            <div class="persona-use-tags">
+              <span class="persona-use-tag">planning</span>
+              <span class="persona-use-tag">assessment</span>
+              <span class="persona-use-tag">docs-gen</span>
+              <span class="persona-use-tag">inventory</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">&#9729;</div>
+          <div class="persona-role">Platform / Cloud Admin</div>
+          <h3>The multi-cluster manager</h3>
+          <p>Manages multiple clusters and sites, owns identity and policy, drives update compliance. Needs fleet-level visibility and policy enforcement — not per-cluster point-and-click.</p>
+          <div class="persona-uses">
+            <div class="persona-uses-label">Primary modules</div>
+            <div class="persona-use-tags">
+              <span class="persona-use-tag">identity</span>
+              <span class="persona-use-tag">governance</span>
+              <span class="persona-use-tag">monitoring</span>
+              <span class="persona-use-tag">update</span>
+              <span class="persona-use-tag">security</span>
+              <span class="persona-use-tag">finops</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">&#127970;</div>
+          <div class="persona-role">MSP Operator</div>
+          <h3>The multi-customer manager</h3>
+          <p>Manages multiple customer environments from a single control plane. Needs scoped access, white-label branding, and customer-level reporting without context-switching between 30 portals.</p>
+          <div class="persona-uses">
+            <div class="persona-uses-label">Primary modules</div>
+            <div class="persona-use-tags">
+              <span class="persona-use-tag">msp</span>
+              <span class="persona-use-tag">identity</span>
+              <span class="persona-use-tag">monitoring</span>
+              <span class="persona-use-tag">troubleshooting</span>
+              <span class="persona-use-tag">update</span>
+              <span class="persona-use-tag">finops</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-label">Ready?</div>
+    <h2>Follow the build as it happens.</h2>
+    <p>CloudSmith is being built in the open. Follow the GitHub org to stay current — code repos open from day one of Phase IV.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://cloudsmith.app">Get Started &#8594;</a>
+      <a class="btn btn-ghost" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">Follow on GitHub</a>
+      <a class="btn btn-ghost" href="/roadmap.html">View Roadmap &#8594;</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>CloudSmith — open source, Apache 2.0</span>
+    <span>
+      <a href="/#about">About</a> &nbsp;&#183;&nbsp;
+      <a href="/product.html">Capabilities</a> &nbsp;&#183;&nbsp;
+      <a href="/roadmap.html">Roadmap</a> &nbsp;&#183;&nbsp;
+      <a href="/changelog.html">Changelog</a> &nbsp;&#183;&nbsp;
+      <a href="https://docs.cloudsmith.cloud">Docs</a> &nbsp;&#183;&nbsp;
+      <a href="https://support.cloudsmith.cloud">Support</a> &nbsp;&#183;&nbsp;
+      <a href="https://blog.cloudsmith.cloud">Blog</a> &nbsp;&#183;&nbsp;
+      <a href="https://status.cloudsmith.cloud">Status</a> &nbsp;&#183;&nbsp;
+      <a href="https://cloudsmith.app">cloudsmith.app</a>
+    </span>
+  </footer>
+
+</body>
+</html>

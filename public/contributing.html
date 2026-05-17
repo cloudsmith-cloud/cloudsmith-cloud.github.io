@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing — CloudSmith</title>
+  <meta name="description" content="How to contribute to CloudSmith — open source, Apache 2.0, built in the open." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.12);
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: rgba(255,255,255,0.07);
+      --text: #e5e5e5;
+      --muted: #a3a3a3;
+      --dim: #525252;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span { color: var(--orange); }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      padding: 0.45rem 1.1rem;
+      border-radius: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; color: #fff; }
+
+    /* ── Nav dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-dropdown-btn:hover { color: var(--text); }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.4rem;
+      min-width: 180px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-item {
+      display: block;
+      padding: 0.5rem 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 0.3rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-item:hover { background: var(--orange-dim); color: var(--text); }
+    .nav-dropdown-item.active { color: var(--orange); }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 0.75rem; }
+      .nav-links .nav-link { display: none; }
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      padding: 5rem 2rem 3.5rem;
+      text-align: center;
+      background: radial-gradient(ellipse 70% 50% at 50% -5%, var(--orange-dim) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #fff 20%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .status-notice {
+      padding: 1rem 1.5rem;
+      background: var(--orange-dim);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 3rem;
+    }
+
+    .status-notice strong { color: var(--orange); }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section p {
+      font-size: 0.925rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .item-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .item-list li::before {
+      content: '—';
+      color: var(--dim);
+      flex-shrink: 0;
+    }
+
+    .item-list li strong { color: var(--text); }
+
+    .item-list a { color: var(--orange); text-decoration: none; }
+    .item-list a:hover { text-decoration: underline; }
+
+    .license-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .license-block p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .license-block strong { color: var(--text); font-size: 1rem; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--dim); text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn">About ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="/#about" class="nav-dropdown-item">About CloudSmith</a>
+          <a href="/product.html" class="nav-dropdown-item">Capabilities</a>
+          <a href="/roadmap.html" class="nav-dropdown-item">Roadmap</a>
+          <a href="/changelog.html" class="nav-dropdown-item">Changelog</a>
+          <a href="/contributing.html" class="nav-dropdown-item active">Contributing</a>
+          <a href="/community.html" class="nav-dropdown-item">Community</a>
+        </div>
+      </div>
+      <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
+      <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
+      <a class="nav-cta" href="https://cloudsmith.app">Get Started →</a>
+    </div>
+  </nav>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="page-label">Get involved</div>
+    <h1>Contributing to CloudSmith</h1>
+    <p>Open source from day one. Here's how to participate — now and when Phase IV opens the code repos.</p>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <div class="status-notice">
+      <strong>Architecture &amp; Design Phase</strong> — CloudSmith is currently in Phase I–III (architecture, research, and design). The code repos are not yet open for contributions. <strong>Phase IV</strong> is when the first code ships and we'll be ready for community contributions. Watch the GitHub org to get notified.
+    </div>
+
+    <div class="section">
+      <h2>How we're building it</h2>
+      <ul class="item-list">
+        <li><strong>Architecture Decision Records (ADRs)</strong> — Every major decision has a written record explaining what was decided, why, and what alternatives were considered. No black boxes.</li>
+        <li><strong>Research before decisions</strong> — We evaluate competing approaches and publish the research before committing to a direction.</li>
+        <li><strong>Planning in the open</strong> — The planning repo will be publicly accessible when we enter Phase IV. ADRs, research documents, and design artifacts are all tracked on GitHub.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>What you can do now</h2>
+      <ul class="item-list">
+        <li><strong>Watch the GitHub org</strong> — Star and watch <a href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">github.com/cloudsmith-cloud</a> to get notified when repos go public.</li>
+        <li><strong>Follow the build</strong> — Architecture walkthroughs and build updates are posted at <a href="https://blog.cloudsmith.cloud" target="_blank">blog.cloudsmith.cloud</a> as we progress through each phase.</li>
+        <li><strong>Check the Changelog</strong> — The <a href="/changelog.html">Changelog</a> tracks planning milestones and architectural decisions as they're finalized.</li>
+        <li><strong>Join the conversation</strong> — GitHub Discussions will open when we enter Phase IV. Early questions and ideas are always welcome.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>When Phase IV opens</h2>
+      <ul class="item-list">
+        <li><strong>Fork → branch → PR</strong> — Standard GitHub flow. No special tooling required.</li>
+        <li><strong>DCO sign-off</strong> — All commits require a Developer Certificate of Origin (DCO) sign-off. No CLA required — just a <code>Signed-off-by:</code> line in your commit message.</li>
+        <li><strong>Module contributions</strong> — Once the Module Lifecycle Manager (MLM) spec is published, community modules can be developed independently and hosted in the cloudsmith-cloud GitHub org.</li>
+        <li><strong>OEM and partner modules</strong> — Hardware vendors and integration partners can ship their own modules without forking the core platform.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>License</h2>
+      <div class="license-block">
+        <p><strong>Apache 2.0</strong></p>
+        <p>Use it, extend it, ship it. No surprises. No proprietary lock-in. Commercial and MSP use is explicitly permitted. No contributor license agreement — just a DCO sign-off on your commits.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span>CloudSmith — open source, Apache 2.0</span>
+    <span>
+      <a href="/#about">About</a> &nbsp;·&nbsp;
+      <a href="/product.html">Capabilities</a> &nbsp;·&nbsp;
+      <a href="/roadmap.html">Roadmap</a> &nbsp;·&nbsp;
+      <a href="/changelog.html">Changelog</a> &nbsp;·&nbsp;
+      <a href="https://docs.cloudsmith.cloud">Docs</a> &nbsp;·&nbsp;
+      <a href="https://support.cloudsmith.cloud">Support</a> &nbsp;·&nbsp;
+      <a href="https://blog.cloudsmith.cloud">Blog</a> &nbsp;·&nbsp;
+      <a href="https://status.cloudsmith.cloud">Status</a> &nbsp;·&nbsp;
+      <a href="https://cloudsmith.app">cloudsmith.app</a>
+    </span>
+  </footer>
+
+</body>
+</html>

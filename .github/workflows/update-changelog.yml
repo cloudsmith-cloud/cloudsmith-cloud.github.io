@@ -1,0 +1,44 @@
+name: Update Changelog
+
+on:
+  repository_dispatch:
+    types: [changelog-update]
+
+permissions:
+  contents: write
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate payload
+        run: |
+          if [ -z "${{ github.event.client_payload.date }}" ] || \
+             [ -z "${{ github.event.client_payload.type }}" ] || \
+             [ -z "${{ github.event.client_payload.title }}" ] || \
+             [ -z "${{ github.event.client_payload.description }}" ]; then
+            echo "Missing required fields in client_payload"
+            exit 1
+          fi
+
+      - name: Prepend entry to changelog.json
+        run: |
+          NEW_ENTRY=$(jq -n \
+            --arg date "${{ github.event.client_payload.date }}" \
+            --arg type "${{ github.event.client_payload.type }}" \
+            --arg title "${{ github.event.client_payload.title }}" \
+            --arg description "${{ github.event.client_payload.description }}" \
+            '{date: $date, type: $type, title: $title, description: $description}')
+          jq --argjson entry "$NEW_ENTRY" '. = [$entry] + .' public/changelog.json > tmp.json
+          mv tmp.json public/changelog.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "CloudSmith Bot"
+          git config user.email "noreply@cloudsmith.cloud"
+          git add public/changelog.json
+          git commit -m "chore(changelog): ${{ github.event.client_payload.title }}"
+          git push

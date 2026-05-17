@@ -86,6 +86,47 @@
 
     .nav-cta:hover { opacity: 0.85; color: #fff; }
 
+    /* ── Nav dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-dropdown-btn:hover { color: var(--text); }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.4rem;
+      min-width: 180px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-item {
+      display: block;
+      padding: 0.5rem 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 0.3rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-item:hover { background: var(--orange-dim); color: var(--text); }
+    .nav-dropdown-item.active { color: var(--orange); }
+
     @media (max-width: 600px) {
       .nav-links { gap: 0.75rem; }
       .nav-links .nav-link:nth-child(-n+2) { display: none; }
@@ -471,10 +512,19 @@
   <nav>
     <a class="nav-brand" href="/">Cloud<span>Smith</span></a>
     <div class="nav-links">
-      <a class="nav-link" href="#about">About</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn">About ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="/#about" class="nav-dropdown-item">About CloudSmith</a>
+          <a href="/product.html" class="nav-dropdown-item">Capabilities</a>
+          <a href="/roadmap.html" class="nav-dropdown-item">Roadmap</a>
+          <a href="/changelog.html" class="nav-dropdown-item">Changelog</a>
+          <a href="/contributing.html" class="nav-dropdown-item">Contributing</a>
+          <a href="/community.html" class="nav-dropdown-item">Community</a>
+        </div>
+      </div>
       <a class="nav-link" href="https://docs.cloudsmith.cloud">Docs</a>
       <a class="nav-link" href="https://support.cloudsmith.cloud">Support</a>
-      <a class="nav-link" href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a class="nav-cta" href="https://cloudsmith.app">Get Started →</a>
     </div>
   </nav>
@@ -683,7 +733,13 @@
   <footer>
     <span>CloudSmith — open source, Apache 2.0</span>
     <span>
-      <a href="#about">About</a>
+      <a href="/#about">About</a>
+      &nbsp;·&nbsp;
+      <a href="/product.html">Capabilities</a>
+      &nbsp;·&nbsp;
+      <a href="/roadmap.html">Roadmap</a>
+      &nbsp;·&nbsp;
+      <a href="/changelog.html">Changelog</a>
       &nbsp;·&nbsp;
       <a href="https://docs.cloudsmith.cloud">Docs</a>
       &nbsp;·&nbsp;
@@ -692,8 +748,6 @@
       <a href="https://blog.cloudsmith.cloud">Blog</a>
       &nbsp;·&nbsp;
       <a href="https://status.cloudsmith.cloud">Status</a>
-      &nbsp;·&nbsp;
-      <a href="https://github.com/cloudsmith-cloud" target="_blank" rel="noopener noreferrer">GitHub</a>
       &nbsp;·&nbsp;
       <a href="https://cloudsmith.app">cloudsmith.app</a>
     </span>
