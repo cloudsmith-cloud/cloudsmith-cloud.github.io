@@ -291,6 +291,12 @@
       border: 1px solid rgba(82,82,82,0.3);
     }
 
+    .badge-complete {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border-color: rgba(34, 197, 94, 0.25);
+    }
+
     .phase-items {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -366,6 +372,31 @@
   <!-- Timeline -->
   <div class="timeline">
 
+    <!-- Phases I–III: Complete -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phases I–III — Research, Architecture &amp; Design</h2>
+            <div class="phase-subtitle">Foundation complete. Every decision documented. Every component designed.</div>
+          </div>
+          <span class="status-badge badge-complete">Complete</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">42 Architectural Decision Records — all decided</div>
+          <div class="phase-item">29 detailed module design documents across all phases</div>
+          <div class="phase-item">Full API surface definition — 11 modules + platform</div>
+          <div class="phase-item">Portal wireframes and UX design system</div>
+          <div class="phase-item">PostgreSQL data model — 6 schema files</div>
+          <div class="phase-item">Security design — trust boundaries, secrets, signing keys</div>
+          <div class="phase-item">Observability design — OTel tracing, VictoriaMetrics, Grafana</div>
+          <div class="phase-item">42 repos created — all public, branch-protected, CI wired</div>
+          <div class="phase-item">Full user story backlog — 33 epics with cross-cutting concern coverage</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Phase IV -->
     <div class="phase">
       <div class="phase-dot active"></div>
@@ -375,18 +406,18 @@
             <h2>Phase IV — MVP</h2>
             <div class="phase-subtitle">The foundation. Everything that comes after builds on this.</div>
           </div>
-          <span class="status-badge badge-indev">In Development</span>
+          <span class="status-badge badge-indev">Starting Now</span>
         </div>
         <div class="phase-items">
-          <div class="phase-item">Platform kernel — core, identity, secrets</div>
-          <div class="phase-item">Cluster management and inventory</div>
-          <div class="phase-item">Hyper-V and Azure Local deployment pipelines</div>
-          <div class="phase-item">S2D sizing and planning tools (Surveyor absorb)</div>
-          <div class="phase-item">REST API, SDK, CLI, and PowerShell module</div>
-          <div class="phase-item">Standalone on-premises deployment model</div>
-          <div class="phase-item">Azure PaaS deployment model</div>
-          <div class="phase-item">Hybrid deployment model with bidirectional sync</div>
-          <div class="phase-item">Web portal with module-contributed SPA</div>
+          <div class="phase-item">Platform kernel — SDK, core library, identity, secrets</div>
+          <div class="phase-item">Hyper-V / WSFC cluster deployment pipeline (primary focus)</div>
+          <div class="phase-item">Cluster management, inventory, and hardware discovery</div>
+          <div class="phase-item">S2D planning tools — sizing, BOM generation, manifest signing</div>
+          <div class="phase-item">REST API with OpenAPI specs and web portal SPA</div>
+          <div class="phase-item">Standalone on-premises deployment model (Model A)</div>
+          <div class="phase-item">Azure PaaS deployment model (Model B)</div>
+          <div class="phase-item">CloudSmith installer — GUI wizard + silent mode + air-gap bundle</div>
+          <div class="phase-item">Runner service — on-premises execution layer for all operations</div>
         </div>
       </div>
     </div>

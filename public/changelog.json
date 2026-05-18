@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-05-18",
+    "type": "milestone",
+    "title": "Phase III complete — Phase IV implementation ready to start",
+    "description": "All Phase III design deliverables completed and signed off. 42 ADRs decided covering every architectural concern. 29 detailed module design documents written for all phases. 11 flow and state machine diagrams produced. 33 epic backlog files with full user stories including cross-cutting concerns (RBAC, audit logging, OTel, rate limiting, Problem Details, integration tests, graceful shutdown). 5 open design gaps resolved (hardware provider routing, runner assembly loading, air-gap bundle format, inventory storage, runner distribution). Phase IV implementation gate is open."
+  },
+  {
+    "date": "2026-05-18",
+    "type": "infrastructure",
+    "title": "CI/CD pipeline wired across all 42 repositories",
+    "description": "cloudsmith-workflows v1.0.0 published — 7 shared reusable GitHub Actions workflows (build-test, pack-publish, docker-build-push, trivy-scan, github-release, openapi-publish, dco-check). All 42 public repos seeded with class-appropriate ci.yml files and governance files (Apache 2.0 license, security policy, DCO contributing guide, code of conduct, CODEOWNERS, PR template)."
+  },
+  {
+    "date": "2026-05-18",
+    "type": "planning",
+    "title": "7 Phase V+ overlay module repositories created",
+    "description": "cloudsmith-msp, cloudsmith-security-compliance, cloudsmith-governance, cloudsmith-finops, cloudsmith-bcdr, cloudsmith-itsm, and cloudsmith-siem repositories created. All public, branch-protected, and seeded with governance files and module-class CI workflows. Full design documents and epic backlogs written for each."
+  },
+  {
+    "date": "2026-05-18",
+    "type": "planning",
+    "title": "ADR-031 through ADR-041 decided — full architecture coverage",
+    "description": "11 new architecture decisions finalized: frontend state management (Zustand + TanStack Query), portal auth token handling (MSAL.js + PKCE), caching strategy (IDistributedCache, secrets never cached), audit logging (append-only PostgreSQL table), background jobs (Hangfire), rate limiting (per-tenant sliding window), database multi-tenancy (PostgreSQL RLS), testing strategy (xUnit + Testcontainers + Playwright), configuration management (IOptions<T> hierarchy), error handling (RFC 9457 Problem Details), and notification routing (INotificationProvider). Total ADRs decided: 42."
+  },
+  {
+    "date": "2026-05-17",
+    "type": "planning",
+    "title": "All 42 GitHub repositories created and protected",
+    "description": "Complete polyrepo structure standing: 29 code repositories (Phase IV through VII+), 7 Phase V+ overlay repositories, 5 supporting repositories (blog, docs, infra, status, support), cloudsmith-workflows, and cloudsmith-internal. All public repositories have branch protection (no force-push, no deletion), squash-merge-only policy, and labeled issue management."
+  },
+  {
+    "date": "2026-05-17",
+    "type": "planning",
+    "title": "Phase III architecture and UX design deliverables complete",
+    "description": "All 12 Phase III deliverables shipped: UX design system, 11 API surface documents, 10 portal wireflow documents, repo scaffold spec, CI/CD design (5 documents), ADR-026 versioning (Option C: semantic per-repo), data model (6 schema files), SDK contracts, security design (5 documents + trust boundaries diagram), C4 architecture diagrams (5 levels), observability design (6 documents + OTel tracing diagram). ADR-025 (RBAC), ADR-026 (versioning), ADR-027 (observability), and ADR-029 (standalone container runtime — Hyper-V Linux VM + Docker CE) all decided."
+  },
+  {
     "date": "2026-05-16",
     "type": "planning",
     "title": "Monitoring Architecture — ADR-016 finalized",
