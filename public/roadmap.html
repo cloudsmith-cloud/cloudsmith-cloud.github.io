@@ -384,15 +384,18 @@
           <span class="status-badge badge-complete">Complete</span>
         </div>
         <div class="phase-items">
-          <div class="phase-item">42 Architectural Decision Records — all decided</div>
-          <div class="phase-item">29 detailed module design documents across all phases</div>
+          <div class="phase-item">43 Architectural Decision Records — all decided</div>
+          <div class="phase-item">Full module design documents across all phases</div>
           <div class="phase-item">Full API surface definition — 11 modules + platform</div>
           <div class="phase-item">Portal wireframes and UX design system</div>
-          <div class="phase-item">PostgreSQL data model — 6 schema files</div>
+          <div class="phase-item">PostgreSQL data model — core, config, and module schemas</div>
+          <div class="phase-item">Configuration Registry architecture — 9-table scope-tree, drift detection</div>
+          <div class="phase-item">Variable catalog — naming standard, group catalog, module map</div>
           <div class="phase-item">Security design — trust boundaries, secrets, signing keys</div>
           <div class="phase-item">Observability design — OTel tracing, VictoriaMetrics, Grafana</div>
           <div class="phase-item">42 repos created — all public, branch-protected, CI wired</div>
           <div class="phase-item">Full user story backlog — 33 epics with cross-cutting concern coverage</div>
+          <div class="phase-item">cloudsmith-sdk built — 12 platform interfaces + fakes + test harness</div>
         </div>
       </div>
     </div>
@@ -409,15 +412,17 @@
           <span class="status-badge badge-indev">Starting Now</span>
         </div>
         <div class="phase-items">
-          <div class="phase-item">Platform kernel — SDK, core library, identity, secrets</div>
-          <div class="phase-item">Hyper-V / WSFC cluster deployment pipeline (primary focus)</div>
-          <div class="phase-item">Cluster management, inventory, and hardware discovery</div>
-          <div class="phase-item">S2D planning tools — sizing, BOM generation, manifest signing</div>
-          <div class="phase-item">REST API with OpenAPI specs and web portal SPA</div>
-          <div class="phase-item">Standalone on-premises deployment model (Model A)</div>
-          <div class="phase-item">Azure PaaS deployment model (Model B)</div>
+          <div class="phase-item">Platform SDK — 12 interfaces, fakes, and module test harness (complete)</div>
+          <div class="phase-item">cloudsmith-core — MLM runtime, RBAC engine, event bus, Configuration Registry</div>
+          <div class="phase-item">Configuration Registry — multi-scope variable service, drift &amp; stale detection</div>
+          <div class="phase-item">REST API layer with OpenAPI specs and auth middleware</div>
+          <div class="phase-item">Web portal SPA — inventory, cluster health, variable admin</div>
+          <div class="phase-item">Runner service — signed payload execution, job dispatch, result streaming</div>
+          <div class="phase-item">Identity and secrets management</div>
+          <div class="phase-item">Cluster management and hardware inventory</div>
           <div class="phase-item">CloudSmith installer — GUI wizard + silent mode + air-gap bundle</div>
-          <div class="phase-item">Runner service — on-premises execution layer for all operations</div>
+          <div class="phase-item">Standalone on-premises deployment model</div>
+          <div class="phase-item">Azure PaaS deployment model</div>
         </div>
       </div>
     </div>
@@ -428,22 +433,23 @@
       <div class="phase-card">
         <div class="phase-header">
           <div class="phase-title-block">
-            <h2>Phase V — First Operations Layer</h2>
-            <div class="phase-subtitle">Day-two operations: monitoring, hardware, updates, and workloads.</div>
+            <h2>Phase V — Deployment Automation &amp; Operations</h2>
+            <div class="phase-subtitle">Hybrid sync, Hyper-V cluster builds, planning wizard, hardware management, and day-two ops.</div>
           </div>
           <span class="status-badge badge-planned">Planned</span>
         </div>
         <div class="phase-items">
-          <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
+          <div class="phase-item">Hybrid sync engine — bidirectional on-prem ↔ PaaS data replication (Cycle 1)</div>
+          <div class="phase-item">Hyper-V / WSFC cluster deployment — bare-metal to production cluster (Cycle 2)</div>
+          <div class="phase-item">Pre-deployment planning wizard — sizing, BOM, manifest signing (Cycle 2)</div>
+          <div class="phase-item">Forge blueprints — S2D 3-node, Hyper-V 2-node, and custom scenarios (Cycle 2)</div>
+          <div class="phase-item">Dell iDRAC / Generic Redfish hardware management (Cycle 3)</div>
           <div class="phase-item">Azure Monitor Workspace metrics + DCR pipelines</div>
           <div class="phase-item">VictoriaMetrics for standalone on-prem monitoring</div>
           <div class="phase-item">OS update orchestration (Azure Update Manager, LCM)</div>
-          <div class="phase-item">AI-assisted troubleshooting</div>
           <div class="phase-item">Workload management — VMs and templates</div>
           <div class="phase-item">Self-hosted image library (ISOs, VHDs)</div>
-          <div class="phase-item">Optional Azure image connectors (Marketplace, Compute Gallery)</div>
-          <div class="phase-item">MSP multi-tenancy</div>
-          <div class="phase-item">Runner payload library</div>
+          <div class="phase-item">MSP multi-tenancy overlay</div>
         </div>
       </div>
     </div>
@@ -454,18 +460,19 @@
       <div class="phase-card">
         <div class="phase-header">
           <div class="phase-title-block">
-            <h2>Phase VI — Ecosystem Expansion</h2>
-            <div class="phase-subtitle">Broader hardware support, Hyper-V clusters, and discovery.</div>
+            <h2>Phase VI — Azure Local, CLI &amp; Ecosystem Expansion</h2>
+            <div class="phase-subtitle">Azure Local cluster deployment, cross-platform CLI, PowerShell module, and extended hardware support.</div>
           </div>
-          <span class="status-badge badge-planned">Planned</span>
+          <span class="status-badge badge-roadmap">Roadmap</span>
         </div>
         <div class="phase-items">
-          <div class="phase-item">Bidirectional on-prem ↔ PaaS sync engine</div>
-          <div class="phase-item">Hyper-V cluster deployment (standalone, WSFC)</div>
-          <div class="phase-item">Workload discovery and assessment</div>
-          <div class="phase-item">As-built documentation generation</div>
+          <div class="phase-item">Azure Local (HCI) cluster deployment pipeline</div>
+          <div class="phase-item">Cross-platform CLI — cloudsmith-cli for scripting and automation</div>
+          <div class="phase-item">PowerShell module — CloudSmith cmdlets for Windows environments</div>
           <div class="phase-item">Lenovo XCC hardware support</div>
           <div class="phase-item">HPE iLO hardware support</div>
+          <div class="phase-item">Workload discovery and as-built documentation generation</div>
+          <div class="phase-item">AI-assisted troubleshooting</div>
         </div>
       </div>
     </div>

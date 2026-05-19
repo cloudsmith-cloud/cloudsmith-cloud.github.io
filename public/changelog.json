@@ -2,6 +2,30 @@
   {
     "date": "2026-05-18",
     "type": "milestone",
+    "title": "Phase IV Cycle 1 implementation gate open — all blockers resolved",
+    "description": "All Phase IV Cycle 1 gates cleared: ADR-042 (Configuration Registry data model) decided, cloudsmith-sdk built with all 12 platform interfaces and test harness, variable catalog documentation complete (naming standard, group catalog, module map, design process), and phase scope locked. Cycle 1 work begins: cloudsmith-core, cloudsmith-installer."
+  },
+  {
+    "date": "2026-05-18",
+    "type": "planning",
+    "title": "ADR-042 DECIDED — Configuration Registry data model approved",
+    "description": "Configuration Registry data model finalized: 9-table scope-tree architecture (scopes, variable_schema, variable_values, variable_history, resources, deployment_snapshots, drift_findings, stale_findings, scope_group_activation). Full scope hierarchy (org → environment → site → cluster → node → workload), closest-ancestor-wins inheritance with provenance, immutable deployment snapshots, lazy drift detection, three stale types. Lives in cloudsmith-core alongside core.* tables."
+  },
+  {
+    "date": "2026-05-18",
+    "type": "planning",
+    "title": "Phase IV rescoped to lean MVP — deployment automation moves to Phase V",
+    "description": "Phase IV scope locked to the minimum shippable platform: cloudsmith-sdk, core, api, portal, runners, identity, secrets, cluster-mgmt, inventory, installer, and Configuration Registry. Deployment automation (cloudsmith-deploy-hyperv, cloudsmith-planning, Forges, hardware providers) moved to Phase V. This ensures Phase IV ships a complete, useful platform before the 14-repo deployment automation layer is built on top of it."
+  },
+  {
+    "date": "2026-05-18",
+    "type": "planning",
+    "title": "cloudsmith-sdk built — all 12 platform interfaces + fakes + test harness",
+    "description": "Full SDK implementation complete: ICloudSmithModule, ICloudSmithSecretsProvider, ICloudSmithConfigService, ICloudSmithAuditWriter, ICloudSmithAuthorizationService, IPlatformEventBus, IRunnerDispatcher, ICloudSmithBlobStorage, ICloudSmithNotificationService, IModuleHealthCheck, IHardwareProvider, and ICloudSmithImageService. Includes FakeConfigService, FakeSecretsProvider, ModuleTestHarness, and full Testing project for module integration tests."
+  },
+  {
+    "date": "2026-05-18",
+    "type": "milestone",
     "title": "Phase III complete — Phase IV implementation ready to start",
     "description": "All Phase III design deliverables completed and signed off. 42 ADRs decided covering every architectural concern. 29 detailed module design documents written for all phases. 11 flow and state machine diagrams produced. 33 epic backlog files with full user stories including cross-cutting concerns (RBAC, audit logging, OTel, rate limiting, Problem Details, integration tests, graceful shutdown). 5 open design gaps resolved (hardware provider routing, runner assembly loading, air-gap bundle format, inventory storage, runner distribution). Phase IV implementation gate is open."
   },
