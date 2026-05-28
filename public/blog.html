@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — CloudSmith</title>
+    <meta name="description" content="News and updates from the CloudSmith project.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0f172a; --surface: #1e293b; --border: #334155;
+            --text: #e2e8f0; --muted: #94a3b8; --accent: #0ea5e9;
+        }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; line-height: 1.7; }
+        nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; gap: 2rem; align-items: center; }
+        nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; } nav a:hover { color: var(--text); }
+        nav .logo { color: var(--text); font-weight: 700; font-size: 1.1rem; margin-right: auto; }
+        main { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .subtitle { color: var(--muted); margin-bottom: 3rem; }
+        .post { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+        .post-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+        .post h2 { font-size: 1.4rem; margin-bottom: 1rem; }
+        .post h2 a { color: var(--text); text-decoration: none; } .post h2 a:hover { color: var(--accent); }
+        .post p { color: var(--muted); margin-bottom: 1rem; }
+        .badge { display: inline-block; background: rgba(14,165,233,0.15); color: var(--accent); border: 1px solid rgba(14,165,233,0.3); border-radius: 20px; padding: 0.2rem 0.8rem; font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem; }
+        .read-more { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 4rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <span class="logo">☁ CloudSmith</span>
+    <a href="index.html">Home</a>
+    <a href="preview.html">Preview</a>
+    <a href="https://docs.cloudsmith.cloud">Docs</a>
+    <a href="community.html">Community</a>
+    <a href="blog.html">Blog</a>
+</nav>
+
+<main>
+    <h1>Blog</h1>
+    <p class="subtitle">News, updates, and technical posts from the CloudSmith project.</p>
+
+    <article class="post">
+        <div class="post-meta">2026-05-28 · Kristopher Turner</div>
+        <span class="badge">Private Preview</span>
+        <h2><a href="#preview1-announcement">CloudSmith v1.0.0-preview1 is available for private preview</a></h2>
+        <p>
+            After months of development, CloudSmith v1.0.0-preview1 is now available for invited private preview participants.
+            This is the first installable release of CloudSmith — a modern, open-source Hyper-V and Azure Local management platform
+            covering the full infrastructure lifecycle.
+        </p>
+        <p>
+            The preview includes online installer support, PaaS deployment via Bicep + Azure Container Apps,
+            the first-run setup wizard, cluster enrollment via Agent + Relay, and the full management portal.
+        </p>
+        <a class="read-more" href="#preview1-announcement">Read more →</a>
+    </article>
+
+    <section id="preview1-announcement" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+        <div style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">2026-05-28 · Kristopher Turner</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">CloudSmith v1.0.0-preview1 is available for private preview</h2>
+
+        <p style="color: var(--muted); margin-bottom: 1rem;">
+            We're excited to announce that CloudSmith v1.0.0-preview1 is now available for our first cohort of private preview participants.
+        </p>
+
+        <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem;">What is CloudSmith?</h3>
+        <p style="color: var(--muted); margin-bottom: 1rem;">
+            CloudSmith is an open-source cluster management platform for Hyper-V and Azure Local environments.
+            It covers the full infrastructure lifecycle: deployment, cluster management, workload operations,
+            update management, hardware lifecycle, monitoring, and AI-assisted diagnostics.
+        </p>
+
+        <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem;">What's in preview1?</h3>
+        <ul style="color: var(--muted); margin-left: 1.5rem; margin-bottom: 1rem;">
+            <li><strong style="color: var(--text);">Online installer</strong> — one-command install on Windows Server 2022/2025 with Hyper-V</li>
+            <li><strong style="color: var(--text);">PaaS deployment</strong> — Bicep templates targeting Azure Container Apps</li>
+            <li><strong style="color: var(--text);">First-run wizard</strong> — no pre-configuration required; guided setup on first access</li>
+            <li><strong style="color: var(--text);">Cluster enrollment</strong> — enroll Hyper-V clusters via the CloudSmith Agent</li>
+            <li><strong style="color: var(--text);">Management portal</strong> — React + Fluent UI portal with cluster, workload, and health views</li>
+        </ul>
+
+        <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem;">How to join the preview</h3>
+        <p style="color: var(--muted); margin-bottom: 1rem;">
+            Private preview is by invitation only. If you're interested in joining,
+            <a href="mailto:preview@cloudsmith.cloud" style="color: var(--accent);">email preview@cloudsmith.cloud</a>
+            with a brief description of your environment (OS version, cluster size, use case).
+        </p>
+
+        <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem;">Links</h3>
+        <ul style="color: var(--muted); margin-left: 1.5rem;">
+            <li><a href="https://github.com/cloudsmith-cloud/cloudsmith-installer/releases/tag/v1.0.0-preview1" style="color: var(--accent);">GitHub Release — v1.0.0-preview1</a></li>
+            <li><a href="https://docs.cloudsmith.cloud" style="color: var(--accent);">Documentation</a></li>
+            <li><a href="https://github.com/cloudsmith-cloud/cloudsmith-installer/issues" style="color: var(--accent);">Report Issues</a></li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 CloudSmith Contributors — <a href="https://github.com/cloudsmith-cloud" style="color: var(--accent);">GitHub</a> · <a href="https://docs.cloudsmith.cloud" style="color: var(--accent);">Docs</a></p>
+</footer>
+
+</body>
+</html>
