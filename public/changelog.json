@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-05-27",
+    "type": "milestone",
+    "title": "Phase IV+V Waves 1–4 complete — platform is deployable end-to-end",
+    "description": "All four implementation waves shipped. CloudSmith is now fully deployable on-premises (Online, Bundled, and Appliance installer modes on Windows Server 2022 and 2025) and as an Azure PaaS workload via azd. The core platform, agent relay, portal, CLI, PowerShell module, and Module Catalog are all live."
+  },
+  {
+    "date": "2026-05-27",
+    "type": "release",
+    "title": "Wave 4 — Module Catalog, portal polish, and new API endpoints",
+    "description": "Published Module Catalog: browse, install, and uninstall CloudSmith modules via the portal. Module signatures are validated with cosign before installation. Available in the portal, CLI (cs module catalog), and PowerShell (Get-CSModuleCatalog, Install-CSModule -FromCatalog). Portal polish: guided tour on first login, saved filters on list views, JSON/YAML export and import, WCAG 2.1 AA accessibility fixes, and a rate-limit progress bar. New API endpoints: audit log, dashboard layout persistence, job batch execution, notification management, and identity provider configuration."
+  },
+  {
+    "date": "2026-05-27",
+    "type": "release",
+    "title": "Wave 3 — PaaS deployment, portal UX, and security hardening",
+    "description": "PaaS deployment: deploy CloudSmith to Azure Container Apps with azd up. The master key is now sourced from an ACA Key Vault secret reference — raw environment variable exposure eliminated. Portal UX: command palette, cluster detail pages, and module management UI. Security hardening: batch job execution now requires the jobs:write permission; cluster stream subscriptions enforce org_id ownership to prevent cross-tenant data leakage."
+  },
+  {
+    "date": "2026-05-27",
+    "type": "release",
+    "title": "Waves 1–2 — Core platform, identity, and installer",
+    "description": "Core platform: cluster registration, job execution pipeline, Windows Service agent (cloudsmith-agent), relay bridge, PowerShell module, and CLI surface. Identity: first-run setup wizard, local admin bootstrap, and Keycloak integration. Installer: Online, Bundled, and Appliance install modes for Windows Server 2022 and 2025."
+  },
+  {
     "date": "2026-05-18",
     "type": "milestone",
     "title": "Phase IV Cycle 1 implementation gate open — all blockers resolved",
