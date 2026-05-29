@@ -45,6 +45,21 @@
     <p class="subtitle">News, updates, and technical posts from the CloudSmith project.</p>
 
     <article class="post">
+        <div class="post-meta">2026-06-01 · Kristopher Turner</div>
+        <span class="badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border-color:rgba(34,197,94,0.3);">Generally Available</span>
+        <h2><a href="#ga-announcement">CloudSmith v1.0.0 is now generally available</a></h2>
+        <p>
+            CloudSmith v1.0.0 is here. After private and public preview, the first GA release of the open-source
+            Hyper-V and Azure Local management platform is ready for production workloads.
+        </p>
+        <p>
+            Highlights: all three on-premises install modes (Online, Bundled, Appliance), Azure PaaS, full cluster lifecycle,
+            cluster enrollment via Agent + Relay, and a production-ready management portal.
+        </p>
+        <a class="read-more" href="#ga-announcement">Read more →</a>
+    </article>
+
+    <article class="post">
         <div class="post-meta">2026-05-28 · Kristopher Turner</div>
         <span class="badge">Private Preview</span>
         <h2><a href="#preview1-announcement">CloudSmith v1.0.0-preview1 is available for private preview</a></h2>
@@ -59,6 +74,42 @@
         </p>
         <a class="read-more" href="#preview1-announcement">Read more →</a>
     </article>
+
+    <section id="ga-announcement" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+        <div style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">2026-06-01 · Kristopher Turner</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">CloudSmith v1.0.0 is now generally available</h2>
+
+        <p style="color: var(--muted); margin-bottom: 1rem;">
+            Today we're shipping CloudSmith v1.0.0 — the first generally available release of the open-source
+            Hyper-V and Azure Local management platform. After a private preview and a public preview that surfaced
+            real-world feedback, v1.0.0 is ready for production workloads.
+        </p>
+
+        <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem;">What's in v1.0.0?</h3>
+        <ul style="color: var(--muted); margin-left: 1.5rem; margin-bottom: 1rem;">
+            <li><strong style="color: var(--text);">Three on-premises install modes</strong> — Online, Bundled (air-gapped), and Appliance (VHDX import, portal up in ~3 min)</li>
+            <li><strong style="color: var(--text);">Azure PaaS deployment</strong> — Bicep + <code style="color:var(--accent);">azd up</code> targeting Azure Container Apps</li>
+            <li><strong style="color: var(--text);">Cluster enrollment</strong> — Hyper-V WSFC clusters via CloudSmith Agent + PSRemote relay</li>
+            <li><strong style="color: var(--text);">Management portal</strong> — React + Fluent UI with cluster, workload, health, and module views</li>
+            <li><strong style="color: var(--text);">CLI and PowerShell module</strong> — <code style="color:var(--accent);">cs</code> CLI and <code style="color:var(--accent);">CloudSmithPS</code> for automation</li>
+            <li><strong style="color: var(--text);">Built-in monitoring</strong> — Prometheus + Loki + OpenTelemetry; PaaS routes to Azure Monitor</li>
+            <li><strong style="color: var(--text);">Module system</strong> — install first-party modules (cluster-mgmt, monitoring) and build your own</li>
+        </ul>
+
+        <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem;">Breaking changes from preview</h3>
+        <p style="color: var(--muted); margin-bottom: 1rem;">
+            No breaking changes from preview2. Upgrade by re-running the installer with <code style="color:var(--accent);">-Version 1.0.0</code>
+            or pulling the <code style="color:var(--accent);">latest</code> tag.
+        </p>
+
+        <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem;">Get started</h3>
+        <ul style="color: var(--muted); margin-left: 1.5rem;">
+            <li><a href="https://github.com/cloudsmith-cloud/cloudsmith-installer/releases/tag/v1.0.0" style="color: var(--accent);">GitHub Release — v1.0.0</a></li>
+            <li><a href="https://docs.cloudsmith.cloud/getting-started/" style="color: var(--accent);">Getting started guide</a></li>
+            <li><a href="https://docs.cloudsmith.cloud" style="color: var(--accent);">Documentation</a></li>
+            <li><a href="https://github.com/cloudsmith-cloud/cloudsmith-installer/discussions" style="color: var(--accent);">Community discussions</a></li>
+        </ul>
+    </section>
 
     <section id="preview1-announcement" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
         <div style="color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem;">2026-05-28 · Kristopher Turner</div>
