@@ -366,7 +366,7 @@
   <div class="page-header">
     <div class="page-label">What we're building</div>
     <h1>Product Roadmap</h1>
-    <p>From MVP to a full-lifecycle platform. CloudSmith is built in phases — each one shippable, each one useful on its own.</p>
+    <p>CloudSmith is built on two delivery tracks: <strong>Azure PaaS</strong> (active, target Sep 2026) and <strong>On-Premises</strong> (planned, starting Oct 2026). Each track is independently shippable.</p>
   </div>
 
   <!-- Timeline -->
@@ -400,59 +400,87 @@
       </div>
     </div>
 
-    <!-- Phase IV -->
+    <!-- Track label: PaaS -->
     <div class="phase">
       <div class="phase-dot"></div>
       <div class="phase-card">
         <div class="phase-header">
           <div class="phase-title-block">
-            <h2>Phase IV — MVP</h2>
-            <div class="phase-subtitle">The foundation. Everything that comes after builds on this.</div>
+            <h2>Azure PaaS Track</h2>
+            <div class="phase-subtitle">Deploy and manage CloudSmith from Azure — no on-prem infrastructure required. Active sprint through September 2026.</div>
+          </div>
+          <span class="status-badge badge-indev">Active Track</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase IV: PaaS Core -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phase IV — PaaS Core</h2>
+            <div class="phase-subtitle">Platform SDK, core services, portal, agent, identity, and Azure deployment.</div>
           </div>
           <span class="status-badge badge-complete">Complete</span>
         </div>
         <div class="phase-items">
           <div class="phase-item">Platform SDK — 12 interfaces, fakes, and module test harness</div>
-          <div class="phase-item">cloudsmith-core — MLM runtime, RBAC engine, event bus, Configuration Registry</div>
-          <div class="phase-item">Configuration Registry — multi-scope variable service, drift &amp; stale detection</div>
-          <div class="phase-item">REST API layer with OpenAPI specs and auth middleware</div>
+          <div class="phase-item">cloudsmith-core — runtime, RBAC engine, event bus, Configuration Registry</div>
+          <div class="phase-item">REST API — OpenAPI specs, auth middleware, OTel tracing</div>
           <div class="phase-item">Web portal SPA — inventory, cluster health, variable admin, Module Catalog</div>
-          <div class="phase-item">cloudsmith-agent Windows Service — signed payload execution, job dispatch, result streaming</div>
+          <div class="phase-item">cloudsmith-agent Windows Service — signed payload execution, job dispatch</div>
           <div class="phase-item">Identity — first-run wizard, local admin bootstrap, Keycloak integration</div>
           <div class="phase-item">Cluster management and hardware inventory</div>
-          <div class="phase-item">CloudSmith installer — Online, Bundled, and Appliance modes for Windows Server 2022/2025</div>
-          <div class="phase-item">Standalone on-premises deployment model</div>
-          <div class="phase-item">Azure PaaS deployment via azd — ACA + Key Vault secret references</div>
+          <div class="phase-item">Azure PaaS deployment via azd — ACA + Key Vault + managed identity</div>
           <div class="phase-item">Module Catalog — browse, install, uninstall with cosign signature verification</div>
           <div class="phase-item">CLI (cs) and PowerShell module with catalog commands</div>
         </div>
       </div>
     </div>
 
-    <!-- Phase V -->
+    <!-- Phase V: PaaS Hardening -->
     <div class="phase">
       <div class="phase-dot active"></div>
       <div class="phase-card highlight">
         <div class="phase-header">
           <div class="phase-title-block">
-            <h2>Phase V — Deployment Automation &amp; Operations</h2>
-            <div class="phase-subtitle">Hybrid sync, Hyper-V cluster builds, planning wizard, hardware management, and day-two ops.</div>
+            <h2>Phase V — PaaS Hardening</h2>
+            <div class="phase-subtitle">Security hardening, managed identity deploy, operator docs, and E2E verification. PaaS MVP sprint — target Sep 2026.</div>
           </div>
           <span class="status-badge badge-indev">In Progress</span>
         </div>
         <div class="phase-items">
+          <div class="phase-item">Security hardening — CORS policy, ForwardedHeaders scoped to RFC-1918, Swagger gated</div>
+          <div class="phase-item">Managed identity deploy — Option A (interactive az login) and Option B (pre-provisioned UAMI)</div>
+          <div class="phase-item">Entra SSO — App Registration auto-create for operators with Application Administrator rights</div>
+          <div class="phase-item">Operator docs — install guide, prerequisites, dual-auth deploy, getting started</div>
           <div class="phase-item">Platform self-update — in-place upgrade of cloudsmith-core and modules</div>
-          <div class="phase-item">Entra ID consent flow — federated identity setup without manual app registration</div>
-          <div class="phase-item">Operator documentation — install guide, upgrade guide, and day-two runbooks</div>
-          <div class="phase-item">E2E verification — all three installer modes verified on Windows Server 2022 and 2025</div>
+          <div class="phase-item">Cross-substrate parity — PaaS and on-prem feature alignment</div>
+          <div class="phase-item">Azure Monitor Workspace metrics + DCR pipelines</div>
+          <div class="phase-item">E2E test suite — automated verification of all PaaS deployment flows</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase VI: PaaS Feature Completeness -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phase VI — PaaS Feature Completeness</h2>
+            <div class="phase-subtitle">Advanced features, ecosystem integrations, and hardware management layer.</div>
+          </div>
+          <span class="status-badge badge-planned">Planned</span>
+        </div>
+        <div class="phase-items">
           <div class="phase-item">Hybrid sync engine — bidirectional on-prem ↔ PaaS data replication</div>
           <div class="phase-item">Hyper-V / WSFC cluster deployment — bare-metal to production cluster</div>
           <div class="phase-item">Pre-deployment planning wizard — sizing, BOM, manifest signing</div>
           <div class="phase-item">Forge blueprints — S2D 3-node, Hyper-V 2-node, and custom scenarios</div>
           <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
-          <div class="phase-item">Azure Monitor Workspace metrics + DCR pipelines</div>
-          <div class="phase-item">VictoriaMetrics for standalone on-prem monitoring</div>
-          <div class="phase-item">OS update orchestration (Azure Update Manager, LCM)</div>
           <div class="phase-item">Workload management — VMs and templates</div>
           <div class="phase-item">Self-hosted image library (ISOs, VHDs)</div>
           <div class="phase-item">MSP multi-tenancy overlay</div>
@@ -460,37 +488,92 @@
       </div>
     </div>
 
-    <!-- Phase VI -->
+    <!-- Phase VII: PaaS GA -->
     <div class="phase">
       <div class="phase-dot"></div>
       <div class="phase-card">
         <div class="phase-header">
           <div class="phase-title-block">
-            <h2>Phase VI — Azure Local, CLI &amp; Ecosystem Expansion</h2>
-            <div class="phase-subtitle">Azure Local cluster deployment, cross-platform CLI, PowerShell module, and extended hardware support.</div>
+            <h2>Phase VII — PaaS GA &amp; Public Preview</h2>
+            <div class="phase-subtitle">Production hardening, GA readiness, public preview launch.</div>
           </div>
-          <span class="status-badge badge-roadmap">Roadmap</span>
+          <span class="status-badge badge-planned">Planned</span>
         </div>
         <div class="phase-items">
           <div class="phase-item">Azure Local (HCI) cluster deployment pipeline</div>
-          <div class="phase-item">Cross-platform CLI — cloudsmith-cli for scripting and automation</div>
-          <div class="phase-item">PowerShell module — CloudSmith cmdlets for Windows environments</div>
-          <div class="phase-item">Lenovo XCC hardware support</div>
-          <div class="phase-item">HPE iLO hardware support</div>
-          <div class="phase-item">Workload discovery and as-built documentation generation</div>
+          <div class="phase-item">Lenovo XCC, HPE iLO hardware support</div>
           <div class="phase-item">AI-assisted troubleshooting</div>
+          <div class="phase-item">Workload discovery and as-built documentation generation</div>
+          <div class="phase-item">Public preview launch — docs.cloudsmith.cloud, community onboarding</div>
         </div>
       </div>
     </div>
 
-    <!-- Post-MVP -->
+    <!-- Track label: On-Premises -->
     <div class="phase">
       <div class="phase-dot"></div>
       <div class="phase-card">
         <div class="phase-header">
           <div class="phase-title-block">
-            <h2>Post-MVP — Advanced Capabilities</h2>
-            <div class="phase-subtitle">Security, governance, integrations, and expanded workload coverage.</div>
+            <h2>On-Premises Track</h2>
+            <div class="phase-subtitle">Install and run CloudSmith on your own Hyper-V / Windows Server infrastructure. Sprint starts October 2026.</div>
+          </div>
+          <span class="status-badge badge-planned">Planned — Oct 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase A: On-Prem Foundation -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phase A — On-Premises Foundation</h2>
+            <div class="phase-subtitle">Online, Bundled, and Appliance installer modes verified end-to-end on Windows Server 2022 and 2025.</div>
+          </div>
+          <span class="status-badge badge-planned">Planned — Oct 2026</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">Standalone deployment — Online, Bundled, and Appliance modes</div>
+          <div class="phase-item">Windows Server 2022 and 2025 — all installer modes verified</div>
+          <div class="phase-item">VictoriaMetrics for on-prem monitoring</div>
+          <div class="phase-item">OS update orchestration (Windows Update, LCM)</div>
+          <div class="phase-item">On-premises operator documentation — install, upgrade, day-two runbooks</div>
+          <div class="phase-item">E2E verification — all three installer modes × two OS versions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phases B+C: On-Prem Advanced -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Phases B &amp; C — On-Premises Advanced</h2>
+            <div class="phase-subtitle">Full Hyper-V cluster lifecycle, hardware management, and hybrid sync with PaaS.</div>
+          </div>
+          <span class="status-badge badge-roadmap">Roadmap</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item">Hyper-V / WSFC cluster deployment — bare-metal to production</div>
+          <div class="phase-item">Forge blueprints — S2D, Hyper-V 2-node, custom scenarios</div>
+          <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
+          <div class="phase-item">Hybrid sync — bidirectional on-prem ↔ PaaS replication</div>
+          <div class="phase-item">Full feature parity with PaaS track</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced Capabilities -->
+    <div class="phase">
+      <div class="phase-dot"></div>
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-title-block">
+            <h2>Advanced Capabilities</h2>
+            <div class="phase-subtitle">Security, governance, integrations, and expanded workload coverage — both tracks.</div>
           </div>
           <span class="status-badge badge-roadmap">Roadmap</span>
         </div>
@@ -505,7 +588,6 @@
           <div class="phase-item">VMware/Nutanix migration tooling</div>
           <div class="phase-item">Decommissioning and retirement workflows</div>
           <div class="phase-item">Workload optimization and right-sizing</div>
-          <div class="phase-item">Lightweight on-host agent (cs-agent)</div>
           <div class="phase-item">Terraform / Pulumi / Bicep IaC provider</div>
         </div>
       </div>

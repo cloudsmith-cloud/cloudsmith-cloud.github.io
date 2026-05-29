@@ -1,9 +1,27 @@
 [
   {
+    "date": "2026-05-29",
+    "type": "milestone",
+    "title": "PaaS and On-Premises delivery tracks split — dedicated sprints, restructured backlog",
+    "description": "CloudSmith delivery is now organized into two explicit tracks: PaaS (Azure) and On-Premises. The PaaS MVP sprint covers Phases IV–VII and runs through September 2026. The On-Premises sprint covers Phases A–C and begins October 2026. The ADO epic hierarchy was restructured to match — AB#2410 (PaaS) and AB#2383 (On-Premises) are now separate epics under the root platform epic, each with their own phase children."
+  },
+  {
+    "date": "2026-05-29",
+    "type": "release",
+    "title": "PaaS security and deploy audit — 14 bugs resolved across 5 repos",
+    "description": "A full static audit of the PaaS codebase found and fixed 14 bugs: 5 deploy blockers (relay env vars, Bicep parameter names, CAF tags, prometheus scrape target, health check endpoint), 7 behavioral bugs (hardcoded app name, ForwardedHeaders not scoped to RFC-1918, CORS missing, Swagger exposed in production, Npgsql trusting self-signed certs), and 2 security findings (Keycloak admin password hardcoded, nginx missing WebSocket upgrade headers for SignalR). All deploy-critical and security-HIGH items are resolved."
+  },
+  {
+    "date": "2026-05-29",
+    "type": "release",
+    "title": "docs.cloudsmith.cloud — PaaS-first navigation, dual deploy auth, managed identity guide",
+    "description": "The operator documentation site was overhauled. Navigation now has a proper sidebar with 8 sections and breadcrumbs. The Prerequisites page leads with PaaS (Azure) requirements and offers two deployment authentication options: Option A (interactive az login) and Option B (pre-provisioned User-Assigned Managed Identity with Contributor + RBAC Admin on the subscription). The Entra SSO section explains why App Registration is still required for browser-based OAuth2 flows and how to auto-create it if the deploying account has Application Administrator rights. On-premises prerequisites follow in a separate section."
+  },
+  {
     "date": "2026-05-27",
     "type": "milestone",
-    "title": "Phase IV+V Waves 1–4 complete — platform is deployable end-to-end",
-    "description": "All four implementation waves shipped. CloudSmith is now fully deployable on-premises (Online, Bundled, and Appliance installer modes on Windows Server 2022 and 2025) and as an Azure PaaS workload via azd. The core platform, agent relay, portal, CLI, PowerShell module, and Module Catalog are all live."
+    "title": "Phase IV+V Waves 1–4 complete — PaaS platform is deployable",
+    "description": "All four implementation waves shipped for the PaaS track. CloudSmith is now deployable as an Azure PaaS workload via azd (Azure Container Apps + Key Vault secret references, managed identity). The core platform, agent relay, portal, CLI, PowerShell module, and Module Catalog are all live. On-premises installer modes (Online, Bundled, Appliance) are implemented and currently in active testing and hardening — not yet production-ready."
   },
   {
     "date": "2026-05-27",
