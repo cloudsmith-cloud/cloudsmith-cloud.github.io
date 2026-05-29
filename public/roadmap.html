@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roadmap — CloudSmith</title>
-  <meta name="description" content="The CloudSmith product roadmap — from MVP through advanced capabilities and future releases." />
+  <meta name="description" content="The CloudSmith product roadmap — two delivery tracks: Azure PaaS (active) and On-Premises (planned)." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
   <style>
@@ -19,6 +19,9 @@
       --text: #e5e5e5;
       --muted: #a3a3a3;
       --dim: #525252;
+      --indigo: #818cf8;
+      --indigo-dim: rgba(99,102,241,0.1);
+      --indigo-border: rgba(99,102,241,0.25);
     }
 
     html { scroll-behavior: smooth; }
@@ -161,99 +164,13 @@
     .page-header p {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 560px;
+      max-width: 600px;
       margin: 0 auto;
       line-height: 1.75;
     }
 
-    /* ── Timeline ── */
-    .timeline {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 4rem 2rem 5rem;
-    }
-
-    .phase {
-      position: relative;
-      padding-left: 2.5rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .phase::before {
-      content: '';
-      position: absolute;
-      left: 0.55rem;
-      top: 2.2rem;
-      bottom: -3.5rem;
-      width: 1px;
-      background: var(--border);
-    }
-
-    .phase:last-child::before { display: none; }
-
-    .phase-dot {
-      position: absolute;
-      left: 0;
-      top: 0.6rem;
-      width: 1.2rem;
-      height: 1.2rem;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .phase-dot.active {
-      border-color: var(--orange);
-      background: var(--orange-dim);
-    }
-
-    .phase-dot.active::after {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--orange);
-    }
-
-    .phase-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      padding: 1.75rem;
-      transition: border-color 0.2s;
-    }
-
-    .phase-card.highlight {
-      border-color: rgba(249,115,22,0.35);
-      background: linear-gradient(135deg, #111111 0%, rgba(249,115,22,0.04) 100%);
-    }
-
-    .phase-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
-    }
-
-    .phase-title-block h2 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      margin-bottom: 0.2rem;
-    }
-
-    .phase-title-block .phase-subtitle {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .status-badge {
+    /* ── Status badges ── */
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
@@ -267,47 +184,185 @@
       flex-shrink: 0;
     }
 
-    .badge-indev {
-      background: var(--orange-dim);
-      color: var(--orange);
+    .badge-complete  { background: rgba(34,197,94,0.12);  color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+    .badge-active    { background: var(--orange-dim);      color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
+    .badge-inprogress{ background: var(--orange-dim);      color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
+    .badge-planned   { background: var(--indigo-dim);      color: var(--indigo); border: 1px solid var(--indigo-border); }
+    .badge-roadmap   { background: rgba(14,165,233,0.1);   color: #38bdf8;  border: 1px solid rgba(14,165,233,0.25); }
+    .badge-parking   { background: rgba(82,82,82,0.2);     color: var(--dim);   border: 1px solid rgba(82,82,82,0.3); }
+    .badge-oct2026   { background: var(--indigo-dim);      color: var(--indigo); border: 1px solid var(--indigo-border); }
+
+    /* ── Foundation block (full width) ── */
+    .foundation {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding: 0 2rem;
+    }
+
+    .foundation-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.75rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-title h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-title .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .card-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.55rem;
+    }
+
+    .card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card-item::before {
+      content: '—';
+      color: var(--dim);
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    /* ── Track divider ── */
+    .tracks-section {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding: 0 2rem;
+    }
+
+    .tracks-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 800px) {
+      .tracks-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Track column ── */
+    .track-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .track-banner {
+      border-radius: 0.65rem;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .track-banner.paas {
+      background: linear-gradient(135deg, rgba(249,115,22,0.1) 0%, rgba(249,115,22,0.04) 100%);
       border: 1px solid rgba(249,115,22,0.3);
     }
 
-    .badge-planned {
-      background: rgba(99,102,241,0.1);
-      color: #818cf8;
-      border: 1px solid rgba(99,102,241,0.25);
+    .track-banner.onprem {
+      background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(99,102,241,0.04) 100%);
+      border: 1px solid var(--indigo-border);
     }
 
-    .badge-roadmap {
-      background: rgba(14,165,233,0.1);
-      color: #38bdf8;
-      border: 1px solid rgba(14,165,233,0.25);
+    .track-banner-title {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
     }
 
-    .badge-parking {
-      background: rgba(82,82,82,0.2);
-      color: var(--dim);
-      border: 1px solid rgba(82,82,82,0.3);
+    .track-banner-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
-    .badge-complete {
-      background: rgba(34, 197, 94, 0.12);
-      color: #4ade80;
-      border-color: rgba(34, 197, 94, 0.25);
+    /* ── Phase card (inside tracks) ── */
+    .phase-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.65rem;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .phase-card.current {
+      border-color: rgba(249,115,22,0.35);
+      background: linear-gradient(135deg, #111111 0%, rgba(249,115,22,0.05) 100%);
+    }
+
+    .phase-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.9rem;
+    }
+
+    .phase-card-header h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.15rem;
+    }
+
+    .phase-card-header .phase-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
     .phase-items {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
     }
 
     .phase-item {
       display: flex;
       align-items: flex-start;
-      gap: 0.6rem;
-      font-size: 0.875rem;
+      gap: 0.5rem;
+      font-size: 0.82rem;
       color: var(--muted);
       line-height: 1.5;
     }
@@ -319,7 +374,18 @@
       margin-top: 0.05em;
     }
 
-    .phase-card.highlight .phase-item::before { color: rgba(249,115,22,0.5); }
+    .phase-card.current .phase-item::before { color: rgba(249,115,22,0.5); }
+
+    /* ── Bottom full-width sections ── */
+    .bottom-section {
+      max-width: 1100px;
+      margin: 2rem auto 0;
+      padding: 0 2rem;
+    }
+
+    .bottom-section:last-of-type {
+      padding-bottom: 5rem;
+    }
 
     /* ── Footer ── */
     footer {
@@ -366,254 +432,254 @@
   <div class="page-header">
     <div class="page-label">What we're building</div>
     <h1>Product Roadmap</h1>
-    <p>CloudSmith is built on two delivery tracks: <strong>Azure PaaS</strong> (active, target Sep 2026) and <strong>On-Premises</strong> (planned, starting Oct 2026). Each track is independently shippable.</p>
+    <p>CloudSmith ships on two independent delivery tracks. <strong style="color:var(--orange)">Azure PaaS</strong> is the active track — deploy and manage from Azure today. <strong style="color:var(--indigo)">On-Premises</strong> follows, bringing the full platform to Hyper-V and Windows Server environments.</p>
   </div>
 
-  <!-- Timeline -->
-  <div class="timeline">
-
-    <!-- Phases I–III: Complete -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Phases I–III — Research, Architecture &amp; Design</h2>
-            <div class="phase-subtitle">Foundation complete. Every decision documented. Every component designed.</div>
-          </div>
-          <span class="status-badge badge-complete">Complete</span>
+  <!-- Foundation: Phases I–III -->
+  <div class="foundation">
+    <div class="foundation-card">
+      <div class="card-header">
+        <div class="card-title">
+          <h2>Phases I–III — Research, Architecture &amp; Design</h2>
+          <div class="subtitle">Foundation complete. Every decision documented. Every component designed before a line of code was written.</div>
         </div>
-        <div class="phase-items">
-          <div class="phase-item">43 Architectural Decision Records — all decided</div>
-          <div class="phase-item">Full module design documents across all phases</div>
-          <div class="phase-item">Full API surface definition — 11 modules + platform</div>
-          <div class="phase-item">Portal wireframes and UX design system</div>
-          <div class="phase-item">PostgreSQL data model — core, config, and module schemas</div>
-          <div class="phase-item">Configuration Registry architecture — 9-table scope-tree, drift detection</div>
-          <div class="phase-item">Variable catalog — naming standard, group catalog, module map</div>
-          <div class="phase-item">Security design — trust boundaries, secrets, signing keys</div>
-          <div class="phase-item">Observability design — OTel tracing, VictoriaMetrics, Grafana</div>
-          <div class="phase-item">42 repos created — all public, branch-protected, CI wired</div>
-          <div class="phase-item">Full user story backlog — 33 epics with cross-cutting concern coverage</div>
-          <div class="phase-item">cloudsmith-sdk built — 12 platform interfaces + fakes + test harness</div>
-        </div>
+        <span class="badge badge-complete">Complete</span>
+      </div>
+      <div class="card-items">
+        <div class="card-item">43 Architectural Decision Records — all decided</div>
+        <div class="card-item">Full module design documents across all phases</div>
+        <div class="card-item">Full API surface definition — 11 modules + platform</div>
+        <div class="card-item">Portal wireframes and UX design system</div>
+        <div class="card-item">PostgreSQL data model — core, config, and module schemas</div>
+        <div class="card-item">Configuration Registry — 9-table scope-tree, drift detection</div>
+        <div class="card-item">Security design — trust boundaries, secrets, signing keys</div>
+        <div class="card-item">Observability design — OTel tracing, VictoriaMetrics, Grafana</div>
+        <div class="card-item">42 repos created — all public, branch-protected, CI wired</div>
+        <div class="card-item">cloudsmith-sdk — 12 platform interfaces + fakes + test harness</div>
       </div>
     </div>
+  </div>
 
-    <!-- Track label: PaaS -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Azure PaaS Track</h2>
-            <div class="phase-subtitle">Deploy and manage CloudSmith from Azure — no on-prem infrastructure required. Active sprint through September 2026.</div>
+  <!-- Two-track delivery grid -->
+  <div class="tracks-section">
+    <div class="tracks-label">Delivery Tracks</div>
+    <div class="tracks-grid">
+
+      <!-- ── PaaS Track ── -->
+      <div class="track-col">
+
+        <div class="track-banner paas">
+          <div>
+            <div class="track-banner-title" style="color:var(--orange)">Azure PaaS Track</div>
+            <div class="track-banner-sub">Deploy and manage CloudSmith from Azure Container Apps.<br>No on-premises infrastructure required.</div>
           </div>
-          <span class="status-badge badge-indev">Active Track</span>
+          <span class="badge badge-active">Active</span>
         </div>
+
+        <!-- Phase IV -->
+        <div class="phase-card">
+          <div class="phase-card-header">
+            <div>
+              <h3>Phase IV — PaaS Foundation</h3>
+              <div class="phase-sub">Core platform, portal, agent, identity, and Azure deployment.</div>
+            </div>
+            <span class="badge badge-complete">Complete</span>
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">Platform SDK — 12 interfaces, fakes, and module test harness</div>
+            <div class="phase-item">cloudsmith-core — runtime, RBAC engine, event bus, Configuration Registry</div>
+            <div class="phase-item">REST API — OpenAPI specs, auth middleware, OTel tracing to App Insights</div>
+            <div class="phase-item">Web portal SPA — inventory, cluster health, variable admin, Module Catalog</div>
+            <div class="phase-item">cloudsmith-agent Windows Service — signed payload execution, job dispatch</div>
+            <div class="phase-item">Identity — first-run setup wizard, local admin bootstrap, Keycloak integration</div>
+            <div class="phase-item">Cluster management and hardware inventory</div>
+            <div class="phase-item">Azure PaaS deploy via azd — ACA + Key Vault + managed identity</div>
+            <div class="phase-item">Module Catalog — browse, install, uninstall with cosign verification</div>
+            <div class="phase-item">CLI (cs) and PowerShell module with catalog commands</div>
+          </div>
+        </div>
+
+        <!-- Phase V — current -->
+        <div class="phase-card current">
+          <div class="phase-card-header">
+            <div>
+              <h3>Phase V — PaaS Hardening</h3>
+              <div class="phase-sub">Security, managed identity deploy, operator docs, and E2E verification. Target: Sep 2026.</div>
+            </div>
+            <span class="badge badge-inprogress">In Progress</span>
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">Security hardening — CORS, ForwardedHeaders scoped to RFC-1918, Swagger gated in prod</div>
+            <div class="phase-item">Managed identity deploy — interactive az login and pre-provisioned UAMI options</div>
+            <div class="phase-item">Entra SSO auto-create — App Registration via Graph API for qualifying operators</div>
+            <div class="phase-item">Operator docs — install guide, prerequisites, dual-auth deploy, getting started</div>
+            <div class="phase-item">Platform self-update — in-place upgrade of cloudsmith-core and modules</div>
+            <div class="phase-item">Cross-substrate parity — PaaS and on-prem feature alignment</div>
+            <div class="phase-item">Azure Monitor Workspace metrics + DCR pipelines</div>
+            <div class="phase-item">E2E test suite — automated verification of all PaaS deployment flows</div>
+          </div>
+        </div>
+
+        <!-- Phase VI -->
+        <div class="phase-card">
+          <div class="phase-card-header">
+            <div>
+              <h3>Phase VI — PaaS Feature Completeness</h3>
+              <div class="phase-sub">Advanced features, hardware management, hybrid sync, and day-two ops.</div>
+            </div>
+            <span class="badge badge-planned">Planned</span>
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">Hybrid sync engine — bidirectional on-prem ↔ PaaS data replication</div>
+            <div class="phase-item">Hyper-V / WSFC cluster deployment — bare-metal to production cluster</div>
+            <div class="phase-item">Pre-deployment planning wizard — sizing, BOM, manifest signing</div>
+            <div class="phase-item">Forge blueprints — S2D 3-node, Hyper-V 2-node, custom scenarios</div>
+            <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
+            <div class="phase-item">Workload management — VMs and templates</div>
+            <div class="phase-item">Self-hosted image library — ISOs and VHDs</div>
+            <div class="phase-item">MSP multi-tenancy overlay</div>
+          </div>
+        </div>
+
+        <!-- Phase VII -->
+        <div class="phase-card">
+          <div class="phase-card-header">
+            <div>
+              <h3>Phase VII — PaaS GA &amp; Public Preview</h3>
+              <div class="phase-sub">Production hardening, extended hardware support, and public preview launch.</div>
+            </div>
+            <span class="badge badge-planned">Planned</span>
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">Azure Local (HCI) cluster deployment pipeline</div>
+            <div class="phase-item">Lenovo XCC and HPE iLO hardware support</div>
+            <div class="phase-item">AI-assisted troubleshooting</div>
+            <div class="phase-item">Workload discovery and as-built documentation generation</div>
+            <div class="phase-item">OS update orchestration — Azure Update Manager, LCM</div>
+            <div class="phase-item">Public preview launch — community onboarding, docs.cloudsmith.cloud</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── On-Premises Track ── -->
+      <div class="track-col">
+
+        <div class="track-banner onprem">
+          <div>
+            <div class="track-banner-title" style="color:var(--indigo)">On-Premises Track</div>
+            <div class="track-banner-sub">Install and run CloudSmith on your own Hyper-V /<br>Windows Server Failover Cluster infrastructure.</div>
+          </div>
+          <span class="badge badge-oct2026">Oct 2026</span>
+        </div>
+
+        <!-- Phase A -->
+        <div class="phase-card">
+          <div class="phase-card-header">
+            <div>
+              <h3>Phase A — On-Premises Foundation</h3>
+              <div class="phase-sub">Installer modes verified end-to-end. Standalone deployment production-ready. Sprint starts Oct 2026.</div>
+            </div>
+            <span class="badge badge-planned">Planned</span>
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">Online installer — deploy from internet-connected Windows Server</div>
+            <div class="phase-item">Bundled installer — airgap-ready, all dependencies packed</div>
+            <div class="phase-item">Appliance mode — pre-built VHD with CloudSmith pre-configured</div>
+            <div class="phase-item">Windows Server 2022 and 2025 — all modes verified</div>
+            <div class="phase-item">VictoriaMetrics for standalone on-prem monitoring</div>
+            <div class="phase-item">OS update orchestration — Windows Update, LCM</div>
+            <div class="phase-item">On-premises operator documentation — install, upgrade, day-two runbooks</div>
+            <div class="phase-item">E2E verification — all three installer modes × two OS versions</div>
+          </div>
+        </div>
+
+        <!-- Phase B -->
+        <div class="phase-card">
+          <div class="phase-card-header">
+            <div>
+              <h3>Phase B — On-Premises Expansion</h3>
+              <div class="phase-sub">Hyper-V cluster lifecycle, Forge blueprints, and hardware management.</div>
+            </div>
+            <span class="badge badge-roadmap">Roadmap</span>
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">Hyper-V / WSFC cluster deployment — bare-metal to production cluster</div>
+            <div class="phase-item">Forge blueprints — S2D 3-node, Hyper-V 2-node, and custom scenarios</div>
+            <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
+            <div class="phase-item">Pre-deployment planning wizard — sizing, BOM, manifest signing</div>
+            <div class="phase-item">Workload management — VMs and templates</div>
+            <div class="phase-item">Self-hosted image library — ISOs and VHDs</div>
+          </div>
+        </div>
+
+        <!-- Phase C -->
+        <div class="phase-card">
+          <div class="phase-card-header">
+            <div>
+              <h3>Phase C — On-Premises Advanced</h3>
+              <div class="phase-sub">Full feature parity with PaaS track, hybrid sync, and extended hardware support.</div>
+            </div>
+            <span class="badge badge-roadmap">Roadmap</span>
+          </div>
+          <div class="phase-items">
+            <div class="phase-item">Hybrid sync — bidirectional on-prem ↔ PaaS replication</div>
+            <div class="phase-item">Azure Local (HCI) cluster deployment pipeline</div>
+            <div class="phase-item">Lenovo XCC and HPE iLO hardware support</div>
+            <div class="phase-item">MSP multi-tenancy overlay</div>
+            <div class="phase-item">Full feature parity with PaaS track</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Advanced Capabilities -->
+  <div class="bottom-section">
+    <div class="foundation-card">
+      <div class="card-header">
+        <div class="card-title">
+          <h2>Advanced Capabilities</h2>
+          <div class="subtitle">Security, governance, integrations, and expanded workload coverage — applicable to both tracks.</div>
+        </div>
+        <span class="badge badge-roadmap">Roadmap</span>
+      </div>
+      <div class="card-items">
+        <div class="card-item">Security posture — Defender for Servers, CIS scanning, vulnerability management</div>
+        <div class="card-item">Governance and policy-as-code</div>
+        <div class="card-item">FinOps and cost reporting</div>
+        <div class="card-item">ITSM integration — ServiceNow</div>
+        <div class="card-item">Backup visibility — Commvault, Veeam</div>
+        <div class="card-item">AKS on Azure Local</div>
+        <div class="card-item">Azure Virtual Desktop (AVD + FSLogix)</div>
+        <div class="card-item">VMware / Nutanix migration tooling</div>
+        <div class="card-item">Decommissioning and retirement workflows</div>
+        <div class="card-item">Workload optimization and right-sizing</div>
+        <div class="card-item">Terraform / Pulumi / Bicep IaC provider</div>
       </div>
     </div>
+  </div>
 
-    <!-- Phase IV: PaaS Core -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Phase IV — PaaS Core</h2>
-            <div class="phase-subtitle">Platform SDK, core services, portal, agent, identity, and Azure deployment.</div>
-          </div>
-          <span class="status-badge badge-complete">Complete</span>
+  <!-- Parking Lot -->
+  <div class="bottom-section">
+    <div class="foundation-card">
+      <div class="card-header">
+        <div class="card-title">
+          <h2>Future — Later Releases</h2>
+          <div class="subtitle">Parking lot items. No committed timeline — evaluated after the core platform matures.</div>
         </div>
-        <div class="phase-items">
-          <div class="phase-item">Platform SDK — 12 interfaces, fakes, and module test harness</div>
-          <div class="phase-item">cloudsmith-core — runtime, RBAC engine, event bus, Configuration Registry</div>
-          <div class="phase-item">REST API — OpenAPI specs, auth middleware, OTel tracing</div>
-          <div class="phase-item">Web portal SPA — inventory, cluster health, variable admin, Module Catalog</div>
-          <div class="phase-item">cloudsmith-agent Windows Service — signed payload execution, job dispatch</div>
-          <div class="phase-item">Identity — first-run wizard, local admin bootstrap, Keycloak integration</div>
-          <div class="phase-item">Cluster management and hardware inventory</div>
-          <div class="phase-item">Azure PaaS deployment via azd — ACA + Key Vault + managed identity</div>
-          <div class="phase-item">Module Catalog — browse, install, uninstall with cosign signature verification</div>
-          <div class="phase-item">CLI (cs) and PowerShell module with catalog commands</div>
-        </div>
+        <span class="badge badge-parking">Parking Lot</span>
+      </div>
+      <div class="card-items">
+        <div class="card-item">Multi-cloud resource inventory (AWS / GCP via Azure Arc connectors)</div>
+        <div class="card-item">MCP Server (Model Context Protocol integration)</div>
+        <div class="card-item">FedRAMP / IL4 compliance posture</div>
+        <div class="card-item">Bare-metal PXE provisioning</div>
+        <div class="card-item">SaaS managed offering</div>
       </div>
     </div>
-
-    <!-- Phase V: PaaS Hardening -->
-    <div class="phase">
-      <div class="phase-dot active"></div>
-      <div class="phase-card highlight">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Phase V — PaaS Hardening</h2>
-            <div class="phase-subtitle">Security hardening, managed identity deploy, operator docs, and E2E verification. PaaS MVP sprint — target Sep 2026.</div>
-          </div>
-          <span class="status-badge badge-indev">In Progress</span>
-        </div>
-        <div class="phase-items">
-          <div class="phase-item">Security hardening — CORS policy, ForwardedHeaders scoped to RFC-1918, Swagger gated</div>
-          <div class="phase-item">Managed identity deploy — Option A (interactive az login) and Option B (pre-provisioned UAMI)</div>
-          <div class="phase-item">Entra SSO — App Registration auto-create for operators with Application Administrator rights</div>
-          <div class="phase-item">Operator docs — install guide, prerequisites, dual-auth deploy, getting started</div>
-          <div class="phase-item">Platform self-update — in-place upgrade of cloudsmith-core and modules</div>
-          <div class="phase-item">Cross-substrate parity — PaaS and on-prem feature alignment</div>
-          <div class="phase-item">Azure Monitor Workspace metrics + DCR pipelines</div>
-          <div class="phase-item">E2E test suite — automated verification of all PaaS deployment flows</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase VI: PaaS Feature Completeness -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Phase VI — PaaS Feature Completeness</h2>
-            <div class="phase-subtitle">Advanced features, ecosystem integrations, and hardware management layer.</div>
-          </div>
-          <span class="status-badge badge-planned">Planned</span>
-        </div>
-        <div class="phase-items">
-          <div class="phase-item">Hybrid sync engine — bidirectional on-prem ↔ PaaS data replication</div>
-          <div class="phase-item">Hyper-V / WSFC cluster deployment — bare-metal to production cluster</div>
-          <div class="phase-item">Pre-deployment planning wizard — sizing, BOM, manifest signing</div>
-          <div class="phase-item">Forge blueprints — S2D 3-node, Hyper-V 2-node, and custom scenarios</div>
-          <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
-          <div class="phase-item">Workload management — VMs and templates</div>
-          <div class="phase-item">Self-hosted image library (ISOs, VHDs)</div>
-          <div class="phase-item">MSP multi-tenancy overlay</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase VII: PaaS GA -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Phase VII — PaaS GA &amp; Public Preview</h2>
-            <div class="phase-subtitle">Production hardening, GA readiness, public preview launch.</div>
-          </div>
-          <span class="status-badge badge-planned">Planned</span>
-        </div>
-        <div class="phase-items">
-          <div class="phase-item">Azure Local (HCI) cluster deployment pipeline</div>
-          <div class="phase-item">Lenovo XCC, HPE iLO hardware support</div>
-          <div class="phase-item">AI-assisted troubleshooting</div>
-          <div class="phase-item">Workload discovery and as-built documentation generation</div>
-          <div class="phase-item">Public preview launch — docs.cloudsmith.cloud, community onboarding</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Track label: On-Premises -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>On-Premises Track</h2>
-            <div class="phase-subtitle">Install and run CloudSmith on your own Hyper-V / Windows Server infrastructure. Sprint starts October 2026.</div>
-          </div>
-          <span class="status-badge badge-planned">Planned — Oct 2026</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase A: On-Prem Foundation -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Phase A — On-Premises Foundation</h2>
-            <div class="phase-subtitle">Online, Bundled, and Appliance installer modes verified end-to-end on Windows Server 2022 and 2025.</div>
-          </div>
-          <span class="status-badge badge-planned">Planned — Oct 2026</span>
-        </div>
-        <div class="phase-items">
-          <div class="phase-item">Standalone deployment — Online, Bundled, and Appliance modes</div>
-          <div class="phase-item">Windows Server 2022 and 2025 — all installer modes verified</div>
-          <div class="phase-item">VictoriaMetrics for on-prem monitoring</div>
-          <div class="phase-item">OS update orchestration (Windows Update, LCM)</div>
-          <div class="phase-item">On-premises operator documentation — install, upgrade, day-two runbooks</div>
-          <div class="phase-item">E2E verification — all three installer modes × two OS versions</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phases B+C: On-Prem Advanced -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Phases B &amp; C — On-Premises Advanced</h2>
-            <div class="phase-subtitle">Full Hyper-V cluster lifecycle, hardware management, and hybrid sync with PaaS.</div>
-          </div>
-          <span class="status-badge badge-roadmap">Roadmap</span>
-        </div>
-        <div class="phase-items">
-          <div class="phase-item">Hyper-V / WSFC cluster deployment — bare-metal to production</div>
-          <div class="phase-item">Forge blueprints — S2D, Hyper-V 2-node, custom scenarios</div>
-          <div class="phase-item">Dell iDRAC / Generic Redfish hardware management</div>
-          <div class="phase-item">Hybrid sync — bidirectional on-prem ↔ PaaS replication</div>
-          <div class="phase-item">Full feature parity with PaaS track</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Advanced Capabilities -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Advanced Capabilities</h2>
-            <div class="phase-subtitle">Security, governance, integrations, and expanded workload coverage — both tracks.</div>
-          </div>
-          <span class="status-badge badge-roadmap">Roadmap</span>
-        </div>
-        <div class="phase-items">
-          <div class="phase-item">Security posture — Defender for Servers, CIS scanning, vulnerability management</div>
-          <div class="phase-item">Governance and policy-as-code</div>
-          <div class="phase-item">FinOps and cost reporting</div>
-          <div class="phase-item">ITSM integration — ServiceNow</div>
-          <div class="phase-item">Backup visibility — Commvault, Veeam</div>
-          <div class="phase-item">AKS on Azure Local</div>
-          <div class="phase-item">Azure Virtual Desktop (AVD + FSLogix)</div>
-          <div class="phase-item">VMware/Nutanix migration tooling</div>
-          <div class="phase-item">Decommissioning and retirement workflows</div>
-          <div class="phase-item">Workload optimization and right-sizing</div>
-          <div class="phase-item">Terraform / Pulumi / Bicep IaC provider</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Future -->
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-title-block">
-            <h2>Future — Later Releases</h2>
-            <div class="phase-subtitle">Parking lot items. No committed timeline — evaluated after core platform matures.</div>
-          </div>
-          <span class="status-badge badge-parking">Parking Lot</span>
-        </div>
-        <div class="phase-items">
-          <div class="phase-item">Multi-cloud resource inventory (AWS/GCP via Azure Arc connectors)</div>
-          <div class="phase-item">MCP Server (Model Context Protocol integration)</div>
-          <div class="phase-item">FedRAMP / IL4 compliance posture</div>
-          <div class="phase-item">Bare-metal PXE provisioning</div>
-          <div class="phase-item">SaaS managed offering</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <!-- Footer -->
